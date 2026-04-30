@@ -1,3 +1,8 @@
-"""Chat Pydantic models."""
+"""Chat models — Pydantic schemas for chat endpoints."""
 from pydantic import BaseModel
-# TODO: Implement chat_models
+
+class ChatRequest(BaseModel):
+    message: str
+
+class ChatResponse(BaseModel):
+    response: str

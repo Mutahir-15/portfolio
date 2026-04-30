@@ -11,12 +11,12 @@ user: ADMINS
 command: /sp.tasks
 labels: ["tasks", "scaffold", "verification"]
 links:
-  spec: specs/scaffold/spec.md
+  spec: specs/001-scaffold/spec.md
   ticket: null
   adr: null
   pr: null
 files:
- - specs/scaffold/tasks.md
+ - specs/001-scaffold/tasks.md
 ---
 
 ## Prompt
@@ -33,7 +33,7 @@ Generated a comprehensive and actionable `tasks.md` for the Folder Scaffold (S-1
 
 - ✅ Impact: Provided a detailed execution roadmap for building the monorepo scaffold.
 - 🧪 Tests: n/a
-- 📁 Files: specs/scaffold/tasks.md
+- 📁 Files: specs/001-scaffold/tasks.md
 - 🔁 Next prompts: /sp.implement to begin Phase 1.
 - 🧠 Reflection: Detailed task definitions ensure high-fidelity implementation of the structural spec.
 

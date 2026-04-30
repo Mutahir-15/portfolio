@@ -11,12 +11,12 @@ user: ADMINS
 command: /sp.specify
 labels: ["scaffold", "foundation", "nextjs", "fastapi"]
 links:
-  spec: specs/scaffold/spec.md
+  spec: specs/001-scaffold/spec.md
   ticket: null
   adr: null
   pr: null
 files:
- - specs/scaffold/spec.md
+ - specs/001-scaffold/spec.md
  - frontend/app/layout.tsx
  - frontend/app/page.tsx
  - frontend/components/ui/terminal-window.tsx
@@ -331,7 +331,7 @@ requirements.txt:
 
 ## Response snapshot
 
-Created the folder scaffold for the Mutahir Bin Athar Portfolio project. Saved the specification to 'specs/scaffold/spec.md' and implemented the complete directory structure and 60+ shell files across the frontend (Next.js 15) and backend (FastAPI), following strict export and stubbing rules.
+Created the folder scaffold for the Mutahir Bin Athar Portfolio project. Saved the specification to 'specs/001-scaffold/spec.md' and implemented the complete directory structure and 60+ shell files across the frontend (Next.js 15) and backend (FastAPI), following strict export and stubbing rules.
 
 ## Outcome
 

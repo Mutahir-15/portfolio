@@ -11,12 +11,12 @@ user: ADMINS
 command: /sp.plan
 labels: ["planning", "scaffold", "monorepo"]
 links:
-  spec: specs/scaffold/spec.md
+  spec: specs/001-scaffold/spec.md
   ticket: null
   adr: null
   pr: null
 files:
- - specs/scaffold/plan.md
+ - specs/001-scaffold/plan.md
 ---
 
 ## Prompt
@@ -67,7 +67,7 @@ Formulated a sequenced 9-phase implementation plan (Phase A-I) for the S-1 Folde
 
 - ✅ Impact: Established a logical roadmap for the structural scaffold phase.
 - 🧪 Tests: n/a (planning phase)
-- 📁 Files: specs/scaffold/plan.md
+- 📁 Files: specs/001-scaffold/plan.md
 - 🔁 Next prompts: /sp.tasks to generate specific tasks from this plan.
 - 🧠 Reflection: Dependency-aware planning prevents broken builds during the scaffold process.
 

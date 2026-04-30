@@ -11,7 +11,7 @@ user: ADMINS
 command: none
 labels: ["scaffold", "setup", "frontend", "backend"]
 links:
-  spec: "specs/scaffold/spec.md"
+  spec: "specs/001-scaffold/spec.md"
   ticket: null
   adr: null
   pr: null

@@ -1,2 +1,3 @@
-"""Rate limiting logic."""
-# TODO: Implement rate_limiter
+"""Rate limiting utility."""
+
+# TODO: Implement rate limiting using slowapi

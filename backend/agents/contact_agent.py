@@ -1,2 +1,5 @@
-"""Contact agent using OpenAI Agents SDK."""
-# TODO: Implement contact_agent
+"""Contact agent — handles contact form logic."""
+
+# TODO: Implement ContactAgent
+class ContactAgent:
+    pass

@@ -1,6 +1,6 @@
 # Implementation Plan: S-1 / Folder Scaffold
 
-**Branch**: `foundation/folder-scaffold` | **Date**: 2026-04-30 | **Spec**: `/specs/scaffold/spec.md`
+**Branch**: `foundation/folder-scaffold` | **Date**: 2026-04-30 | **Spec**: `/specs/001-scaffold/spec.md`
 **Input**: Sequence the structural setup of the Next.js/FastAPI monorepo.
 
 ## Summary

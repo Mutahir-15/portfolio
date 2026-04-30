@@ -38,13 +38,13 @@ Maintain a clean, scalable, and logically separated project structure.
 
 ## Response snapshot
 
-Cleaned up the directory structure by deleting the misplaced `history` folder inside `specs/scaffold/`. Updated `GEMINI.md` to explicitly enforce the "Directory Cleanliness Policy," ensuring that `specs/` contains only specification artifacts and all PHRs are routed to the central root `history/prompts/` directory.
+Cleaned up the directory structure by deleting the misplaced `history` folder inside `specs/001-scaffold/`. Updated `GEMINI.md` to explicitly enforce the "Directory Cleanliness Policy," ensuring that `specs/` contains only specification artifacts and all PHRs are routed to the central root `history/prompts/` directory.
 
 ## Outcome
 
 - ✅ Impact: Restored directory integrity and established a permanent structural policy.
 - 🧪 Tests: manual verification of file paths.
-- 📁 Files: GEMINI.md updated; specs/scaffold/history removed.
+- 📁 Files: GEMINI.md updated; specs/001-scaffold/history removed.
 - 🔁 Next prompts: Continue with feature implementation.
 - 🧠 Reflection: Centralizing PHRs prevents "context fragmentation" across subdirectories.
 
