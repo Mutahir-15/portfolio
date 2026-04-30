@@ -1,2 +1,5 @@
-"""Summary agent using OpenAI Agents SDK."""
-# TODO: Implement summary_agent
+"""Summary agent — generates project summaries."""
+
+# TODO: Implement SummaryAgent
+class SummaryAgent:
+    pass

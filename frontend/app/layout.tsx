@@ -1,3 +1,5 @@
+import React from 'react';
+
 // TODO: Implement RootLayout
 export default function RootLayout({
   children,

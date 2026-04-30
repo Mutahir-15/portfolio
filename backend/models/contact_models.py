@@ -1,3 +1,11 @@
-"""Contact Pydantic models."""
-from pydantic import BaseModel
-# TODO: Implement contact_models
+"""Contact models — Pydantic schemas for contact endpoints."""
+from pydantic import BaseModel, EmailStr
+
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    message: str
+
+class ContactResponse(BaseModel):
+    success: bool
+    message: str
