@@ -1,5 +1,5 @@
 ---
-id: 004
+id: 003
 title: Complete Acceptance Criteria for Folder Scaffold
 stage: misc
 date: 2026-04-30

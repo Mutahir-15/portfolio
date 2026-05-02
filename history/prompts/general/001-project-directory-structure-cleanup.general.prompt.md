@@ -1,5 +1,5 @@
 ---
-id: 003
+id: 001
 title: Project Directory Structure Cleanup
 stage: general
 date: 2026-04-30

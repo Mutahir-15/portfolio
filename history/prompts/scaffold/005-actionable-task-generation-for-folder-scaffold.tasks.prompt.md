@@ -1,5 +1,5 @@
 ---
-id: 006
+id: 005
 title: Actionable Task Generation for Folder Scaffold
 stage: tasks
 date: 2026-04-30
