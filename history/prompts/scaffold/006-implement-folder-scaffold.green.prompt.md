@@ -1,5 +1,5 @@
 ---
-id: "007"
+id: "006"
 title: "Implement Folder Scaffold S-1"
 stage: "green"
 date: "2026-04-30"

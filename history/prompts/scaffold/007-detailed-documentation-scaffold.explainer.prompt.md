@@ -1,5 +1,5 @@
 ---
-id: "008"
+id: "007"
 title: "Detailed Documentation of Scaffold Implementation"
 stage: "explainer"
 date: "2026-04-30"

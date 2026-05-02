@@ -1,5 +1,5 @@
 ---
-id: 005
+id: 004
 title: Sequenced Implementation Plan for Folder Scaffold
 stage: plan
 date: 2026-04-30
