@@ -9,7 +9,7 @@
 
 **Purpose**: Project initialization and basic config structure.
 
-- [ ] T001 TASK-1: Replace shell with full config skeleton in frontend/tailwind.config.ts
+- [x] T001 TASK-1: Replace shell with full config skeleton in frontend/tailwind.config.ts
       TASK-1: Replace shell with full config skeleton
       File: frontend/tailwind.config.ts
       Shell: |
@@ -47,7 +47,7 @@
 
 **Purpose**: Implement the color palette which is referenced by other tokens (e.g., shadows).
 
-- [ ] T002 TASK-2: Implement dual-palette colors (16 tokens) in frontend/tailwind.config.ts
+- [x] T002 TASK-2: Implement dual-palette colors (16 tokens) in frontend/tailwind.config.ts
       TASK-2: Implement dual-palette colors
       File: frontend/tailwind.config.ts
       Shell: |
@@ -107,7 +107,7 @@
 **Goal**: Establish all visual constants for design consistency.
 **Independent Test**: Verify that text, spacing, and borders can be styled using these tokens.
 
-- [ ] T003 [US1] TASK-3: Implement Typography and Font Sizes (10 tokens) in frontend/tailwind.config.ts
+- [x] T003 [US1] TASK-3: Implement Typography and Font Sizes (10 tokens) in frontend/tailwind.config.ts
       TASK-3: Implement Typography and Font Sizes
       File: frontend/tailwind.config.ts
       Shell: |
@@ -172,7 +172,7 @@
         export default config;
       Done: fontFamily and fontSize contain all 10 tokens with explicit line-heights.
 
-- [ ] T004 [US1] TASK-4: Implement Spacing, Radius, and Border (11 tokens) in frontend/tailwind.config.ts
+- [x] T004 [US1] TASK-4: Implement Spacing, Radius, and Border (11 tokens) in frontend/tailwind.config.ts
       TASK-4: Implement Spacing, Radius, and Border
       File: frontend/tailwind.config.ts
       Shell: |
@@ -251,7 +251,7 @@
         export default config;
       Done: spacing, borderRadius, and borderWidth contain all 11 tokens.
 
-- [ ] T005 [US1] TASK-5: Implement Box Shadows (5 tokens) in frontend/tailwind.config.ts
+- [x] T005 [US1] TASK-5: Implement Box Shadows (5 tokens) in frontend/tailwind.config.ts
       TASK-5: Implement Box Shadows
       File: frontend/tailwind.config.ts
       Shell: |
@@ -343,7 +343,7 @@
 **Goal**: Implement smooth animations restricted to transform and opacity.
 **Independent Test**: Verify keyframes only target `transform` and `opacity` in the config.
 
-- [ ] T006 [US2] TASK-6: Implement Animation Keyframes (7 tokens) in frontend/tailwind.config.ts
+- [x] T006 [US2] TASK-6: Implement Animation Keyframes (7 tokens) in frontend/tailwind.config.ts
       TASK-6: Implement Animation Keyframes
       File: frontend/tailwind.config.ts
       Shell: |
@@ -467,7 +467,7 @@
         export default config;
       Done: keyframes contain all 7 tokens targeting only transform and opacity.
 
-- [ ] T007 [US2] TASK-7: Implement Animations (8 tokens) in frontend/tailwind.config.ts
+- [x] T007 [US2] TASK-7: Implement Animations (8 tokens) in frontend/tailwind.config.ts
       TASK-7: Implement Animations
       File: frontend/tailwind.config.ts
       Shell: |
@@ -607,7 +607,7 @@
 **Goal**: Ensure terminal aesthetic is maintained even if primary fonts fail.
 **Independent Test**: Verify fallback stacks in `fontFamily`.
 
-- [ ] T008 [US3] Verify Font Fallback Chains in frontend/tailwind.config.ts
+- [x] T008 [US3] Verify Font Fallback Chains in frontend/tailwind.config.ts
       TASK-8: Verify Font Fallback Chains
       Done: fontFamily.mono starts with JetBrains Mono and falls back to monospace; fontFamily.sans starts with Geist Sans and falls back to sans-serif.
 
@@ -617,7 +617,7 @@
 
 **Purpose**: Final tokens and system-wide verification.
 
-- [ ] T009 TASK-9: Implement Terminal Screen Breakpoint (1 token) in frontend/tailwind.config.ts
+- [x] T009 TASK-9: Implement Terminal Screen Breakpoint (1 token) in frontend/tailwind.config.ts
       TASK-9: Implement Terminal Screen Breakpoint
       File: frontend/tailwind.config.ts
       Shell: |
@@ -752,7 +752,7 @@
         export default config;
       Done: screens.terminal-sm is defined at 480px.
 
-- [ ] T010 Final Verification of Design Token System
+- [x] T010 Final Verification of Design Token System
       TASK-10: Final Verification
       Done: Running `tsc --noEmit` returns zero errors and all 58 tokens are present in `tailwind.config.ts`.
 
