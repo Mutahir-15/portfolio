@@ -7,21 +7,9 @@
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Initial barrel exports and folder preparation.
+**Purpose**: Initial types and folder preparation.
 
-- [ ] T001 [P] Ensure components/layout barrel export exists
-      File: frontend/components/layout/index.ts
-      Change: |
-        export * from './theme-toggle';
-      Done: File exists and exports future ThemeToggle component.
-
----
-
-## Phase 2: Foundational (Blocking Prerequisites)
-
-**Purpose**: Define the shared types that all components and hooks depend on.
-
-- [ ] T002 Add Theme types and interfaces in frontend/types/index.ts
+- [ ] T001 Add Theme types and interfaces in frontend/types/index.ts
       File: frontend/types/index.ts
       Change: |
         export type Theme = 'dark' | 'light';
@@ -31,11 +19,11 @@
           isDark: boolean;
           toggleTheme: () => void;
         }
-      Done: `Theme` and `ThemeHookReturn` are exported; `tsc --noEmit` passes for this file.
+      Done: `Theme` and `ThemeHookReturn` are exported; `tsc --noEmit` passes.
 
 ---
 
-## Phase 3: User Story 1 - Persisted Theme Preference (Priority: P1) 🎯 MVP
+## Phase 2: User Story 1 - Persisted Theme Preference (Priority: P1) 🎯 MVP
 
 **Goal**: Implement theme state management with localStorage persistence and SSR safety.
 
@@ -43,7 +31,7 @@
 
 ### Implementation for User Story 1
 
-- [ ] T003 [US1] Implement core useTheme hook in frontend/hooks/use-theme.ts
+- [ ] T002 [US1] Implement core useTheme hook in frontend/hooks/use-theme.ts
       File: frontend/hooks/use-theme.ts
       Change: |
         'use client';
@@ -55,6 +43,7 @@
         export const useTheme = (): ThemeHookReturn => {
           const [theme, setTheme] = useState<Theme | undefined>(undefined);
 
+          // Initial load
           useEffect(() => {
             const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
             if (stored === 'dark' || stored === 'light') {
@@ -65,12 +54,20 @@
             }
           }, []);
 
-          const toggleTheme = useCallback(() => {
-            const next = theme === 'dark' ? 'light' : 'dark';
-            setTheme(next);
-            localStorage.setItem(STORAGE_KEY, next);
-            document.documentElement.classList.toggle('dark', next === 'dark');
+          // S1: Centralized Sync
+          useEffect(() => {
+            if (theme) {
+              document.documentElement.classList.toggle('dark', theme === 'dark');
+            }
           }, [theme]);
+
+          const toggleTheme = useCallback(() => {
+            setTheme(prev => {
+              const next = prev === 'dark' ? 'light' : 'dark';
+              localStorage.setItem(STORAGE_KEY, next);
+              return next;
+            });
+          }, []);
 
           return {
             theme,
@@ -78,18 +75,43 @@
             toggleTheme
           };
         };
-      Done: Hook handles localStorage and updates the HTML class.
+      Done: Hook handles localStorage and centralized class synchronization.
 
-- [ ] T004 [US1] Implement ThemeProvider in frontend/app/layout.tsx
+- [ ] T003 [US1] Implement ThemeProvider in frontend/components/layout/theme-provider.tsx
+      File: frontend/components/layout/theme-provider.tsx
+      Change: |
+        'use client';
+        import React, { createContext, useContext } from 'react';
+        import { useTheme } from '@/hooks/use-theme';
+        import { ThemeHookReturn } from '@/types';
+
+        const ThemeContext = createContext<ThemeHookReturn | undefined>(undefined);
+
+        export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+          const themeValue = useTheme();
+          return (
+            <ThemeContext.Provider value={themeValue}>
+              {children}
+            </ThemeContext.Provider>
+          );
+        };
+
+        export const useThemeContext = () => {
+          const context = useContext(ThemeContext);
+          if (!context) throw new Error('useThemeContext must be used within ThemeProvider');
+          return context;
+        };
+      Done: Dedicated provider created to encapsulate theme context.
+
+- [ ] T004 [US1] Integrate ThemeProvider in frontend/app/layout.tsx
       File: frontend/app/layout.tsx
       Change: |
-        // This task involves wrapping children in a Provider or just integrating logic in RootLayout
-        // For simplicity in this project, we apply the logic directly in layout.tsx or a small wrapper
-      Done: Root layout correctly applies the theme state to the app.
+        // Wrap {children} in <ThemeProvider> inside RootLayout
+      Done: App is wrapped in the ThemeProvider.
 
 ---
 
-## Phase 4: User Story 2 - System Preference Detection (Priority: P2)
+## Phase 3: User Story 2 - System Preference Detection (Priority: P2)
 
 **Goal**: Align theme with OS settings and prevent FAWT (Flash of Wrong Theme).
 
@@ -100,18 +122,7 @@
 - [ ] T005 [US2] Implement real-time OS preference syncing in frontend/hooks/use-theme.ts
       File: frontend/hooks/use-theme.ts
       Change: |
-        // Update useEffect to add listener
-        useEffect(() => {
-          const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-          const handleChange = (e: MediaQueryListEvent) => {
-            if (!localStorage.getItem(STORAGE_KEY)) {
-              setTheme(e.matches ? 'dark' : 'light');
-              document.documentElement.classList.toggle('dark', e.matches);
-            }
-          };
-          mediaQuery.addEventListener('change', handleChange);
-          return () => mediaQuery.removeEventListener('change', handleChange);
-        }, []);
+        // Update useEffect in useTheme to add listener for prefers-color-scheme
       Done: OS theme changes update the UI immediately if no manual override exists.
 
 - [ ] T006 [US2] Inject FAWT prevention inline script in frontend/app/layout.tsx
@@ -124,52 +135,28 @@
             }}
           />
         </head>
-      Done: Script is injected in `<head>` and size is < 200 bytes.
+      Done: FAWT script injected and working as intended.
 
 ---
 
-## Phase 5: User Story 3 - Instant Theme Toggling (Priority: P3)
+## Phase 4: User Story 3 - Instant Theme Toggling (Priority: P3)
 
 **Goal**: Provide a terminal-style UI component for theme switching.
 
-**Independent Test**: Click toggle icon and verify smooth opacity transition and focus ring visibility.
+**Independent Test**: Click toggle icon and verify smooth opacity transition.
 
 ### Implementation for User Story 3
 
 - [ ] T007 [US3] Implement ThemeToggle component in frontend/components/layout/theme-toggle.tsx
       File: frontend/components/layout/theme-toggle.tsx
+      Done: UI component implemented with Framer Motion and terminal styling.
+
+- [ ] T008 [P] Create/Update components/layout barrel export
+      File: frontend/components/layout/index.ts
       Change: |
-        'use client';
-        import { useTheme } from '@/hooks/use-theme';
-        import { motion, AnimatePresence } from 'framer-motion';
-        import { Sun, Moon } from 'lucide-react';
-
-        export const ThemeToggle = () => {
-          const { theme, toggleTheme } = useTheme();
-          if (!theme) return null;
-
-          return (
-            <button
-              onClick={toggleTheme}
-              className="p-2 border border-terminal focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-2 transition-colors"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Currently in ${theme} mode`}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={theme}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />}
-                </motion.div>
-              </AnimatePresence>
-            </button>
-          );
-        };
-      Done: Component renders icons, handles toggle, and uses Framer Motion.
+        export * from './theme-provider';
+        export * from './theme-toggle';
+      Done: [T1] Barrel export added AFTER implementation to prevent build breaks.
 
 ---
 
@@ -177,48 +164,22 @@
 
 **Purpose**: Final verification and robustness checks.
 
-- [ ] T008 [P] Update layout barrel export in frontend/components/layout/index.ts
-      File: frontend/components/layout/index.ts
-      Done: ThemeToggle is accessible via barrel export.
-
 - [ ] T009 Handle matchMedia unavailability (EC-003) in use-theme.ts
       File: frontend/hooks/use-theme.ts
       Done: Safely defaults to 'dark' if `window.matchMedia` is missing.
 
-- [ ] T010 Final Verification of Theme System
-      Run: cd frontend; npx tsc --noEmit
-      Done: 0 TS errors and all SC criteria from spec.md confirmed.
+- [ ] T010 Final Verification and Accessibility Check
+      Check:
+      - [ ] cd frontend; npx tsc --noEmit (0 errors)
+      - [ ] [C1] Verify 4.5:1 contrast ratio in both modes using DevTools
+      - [ ] Verify zero FAWT on slow 3G throttled refresh
+      Done: All success criteria confirmed.
 
 ---
 
 ## Dependencies & Execution Order
 
-### Phase Dependencies
-
-- **Phase 1 & 2**: Prerequisites for all UI work.
-- **Phase 3 (US1)**: Must be complete for persistence.
-- **Phase 4 (US2)**: Depends on hook logic from Phase 3.
-- **Phase 5 (US3)**: Consumes the hook from Phase 3.
-- **Phase N**: Final verification.
-
-### Parallel Opportunities
-
-- T001 and T002 can run in parallel.
-- Once the hook (T003) is stable, the Toggle UI (T007) and FAWT script (T006) can be worked on in parallel.
-
----
-
-## Implementation Strategy
-
-### MVP First (User Story 1 Only)
-
-1. Complete Phase 1 & 2.
-2. Implement `useTheme` (T003).
-3. Integrate into layout (T004).
-4. Verify persistence manually.
-
-### Incremental Delivery
-
-1. Add FAWT script for performance.
-2. Add real-time OS syncing.
-3. Deliver `ThemeToggle` UI.
+1. **Phase 1 & 2**: Core hook and provider (Foundation).
+2. **Phase 3**: Optimization (FAWT) and OS Sync.
+3. **Phase 4**: UI layer (Toggle).
+4. **Phase N**: Polish.

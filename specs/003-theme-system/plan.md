@@ -46,12 +46,13 @@ specs/003-theme-system/
 ```text
 frontend/
 ├── app/
-│   └── layout.tsx       # ThemeProvider + FAWT Script
+│   └── layout.tsx       # RootLayout with FAWT Script
 ├── components/
 │   └── layout/
-│       └── theme-toggle.tsx # UI component
+│       ├── theme-provider.tsx # Theme state provider
+│       └── theme-toggle.tsx   # UI component
 ├── hooks/
-│   └── use-theme.ts     # Custom hook
+│   └── use-theme.ts     # Custom hook with centralized sync
 ├── types/
 │   └── index.ts         # Type definitions
 ```
@@ -67,20 +68,20 @@ frontend/
 
 ### Phase B — Implement hooks/use-theme.ts
 - **Exact change**: Create a 'use client' hook that manages theme state.
-- **Key detail**: Listen for `prefers-color-scheme` changes using `matchMedia`.
-- **Gotcha**: **SSR Trap**: Initialize state to `undefined` or a default (e.g., 'dark') and only read `localStorage` inside `useEffect` to prevent hydration mismatches.
+- **Key detail**: Listen for `prefers-color-scheme` changes. **S1: Centralize `document.documentElement.classList` synchronization in a dedicated `useEffect` to ensure robust state-to-DOM mapping.**
+- **Gotcha**: **SSR Trap**: Initialize state to `undefined` and only read `localStorage` inside `useEffect` to prevent hydration mismatches.
 
 ### Phase C — Implement components/layout/theme-toggle.tsx
 - **Exact change**: Create a 'use client' button component using Framer Motion.
 - **Key detail**: Render icons (Moon/Sun) with tooltips.
 - **Gotcha**: Ensure the focus ring uses the terminal-style 1px solid, 2px offset per Constitution Pillar III.
 
-### Phase D — Implement app/layout.tsx
-- **Exact change**: Inject the FAWT script into `<head>` and wrap children in `ThemeProvider`.
-- **Key detail**: FAWT script must be inlined as a string via `dangerouslySetInnerHTML`.
-- **Gotcha**: The script must be blocking (no `async`/`defer`) to execute before the body is rendered.
+### Phase D — Implement ThemeProvider and app/layout.tsx
+- **Exact change**: Create `components/layout/theme-provider.tsx` to wrap the app. Inject the FAWT script into `<head>` of `app/layout.tsx`.
+- **Key detail**: `ThemeProvider` handles the context; FAWT script must be inlined as a string via `dangerouslySetInnerHTML`.
+- **Gotcha**: The script must be blocking to execute before the body is rendered.
 
 ### Phase E — Full integration verification
-- **Exact change**: Run `tsc --noEmit` and perform manual verification.
-- **Key detail**: Verify SC-001 through SC-010.
+- **Exact change**: Run `tsc --noEmit`, perform manual verification, and check accessibility.
+- **Key detail**: **C1: Verify 4.5:1 contrast ratio for all text elements in both modes.**
 - **Gotcha**: Check for hydration warnings in the console specifically.
