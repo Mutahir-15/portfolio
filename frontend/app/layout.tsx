@@ -1,6 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'Mutahir Bin Athar | Portfolio',
+  description: 'Software Engineer & AI Enthusiast',
+};
 
 export default function RootLayout({
   children,
