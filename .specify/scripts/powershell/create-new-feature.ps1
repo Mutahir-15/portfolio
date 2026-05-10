@@ -262,9 +262,9 @@ if (Test-Path $template) {
     New-Item -ItemType File -Path $specFile | Out-Null
 }
 
-# Auto-create history/prompts/<branch-name>/ directory (same as specs/<branch-name>/)
-# This keeps naming consistent across branch, specs, and prompts directories
-$promptsDir = Join-Path $repoRoot 'history' 'prompts' $branchName
+# Auto-create history/prompts/<branch-suffix>/ directory
+# This keeps history/prompts/ clean and scalable by using only the feature name
+$promptsDir = Join-Path (Join-Path $repoRoot 'history') (Join-Path 'prompts' $branchSuffix)
 New-Item -ItemType Directory -Path $promptsDir -Force | Out-Null
 
 # Set the SPECIFY_FEATURE environment variable for the current session
