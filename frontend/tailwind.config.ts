@@ -30,8 +30,8 @@ const config = {
         },
       },
       fontFamily: {
-        mono: ['var(--font-jetbrains-mono)', 'Fira Code', 'Consolas', 'monospace'],
-        sans: ['var(--font-geist-sans)', 'Inter', 'sans-serif'],
+        mono: ['var(--font-mono)', 'Fira Code', 'Consolas', 'monospace'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1rem' }],
