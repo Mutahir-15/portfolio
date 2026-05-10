@@ -83,6 +83,11 @@
         and update the configuration to use local loading.
       Done: EC-001 and fallback strategy documented.
 
+- [ ] T006b [US1] Verify and populate `public/fonts/` directory
+      File: `frontend/public/fonts/`
+      Action: Ensure local .woff2 files for JetBrains Mono (400, 500, 700) and Geist Sans (400, 500) are present for offline safety.
+      Done: `ls frontend/public/fonts/` shows 5 .woff2 files.
+
 ---
 
 ## Phase N: Polish & Cross-Cutting Concerns
