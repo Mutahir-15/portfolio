@@ -9,7 +9,7 @@
 
 **Purpose**: Initial types and folder preparation.
 
-- [ ] T001 Add Theme types and interfaces in frontend/types/index.ts
+- [x] T001 Add Theme types and interfaces in frontend/types/index.ts
       File: frontend/types/index.ts
       Change: |
         export type Theme = 'dark' | 'light';
@@ -31,7 +31,7 @@
 
 ### Implementation for User Story 1
 
-- [ ] T002 [US1] Implement core useTheme hook in frontend/hooks/use-theme.ts
+- [x] T002 [US1] Implement core useTheme hook in frontend/hooks/use-theme.ts
       File: frontend/hooks/use-theme.ts
       Change: |
         'use client';
@@ -77,7 +77,7 @@
         };
       Done: Hook handles localStorage and centralized class synchronization.
 
-- [ ] T003 [US1] Implement ThemeProvider in frontend/components/layout/theme-provider.tsx
+- [x] T003 [US1] Implement ThemeProvider in frontend/components/layout/theme-provider.tsx
       File: frontend/components/layout/theme-provider.tsx
       Change: |
         'use client';
@@ -103,7 +103,7 @@
         };
       Done: Dedicated provider created to encapsulate theme context.
 
-- [ ] T004 [US1] Integrate ThemeProvider in frontend/app/layout.tsx
+- [x] T004 [US1] Integrate ThemeProvider in frontend/app/layout.tsx
       File: frontend/app/layout.tsx
       Change: |
         // Wrap {children} in <ThemeProvider> inside RootLayout
@@ -119,13 +119,13 @@
 
 ### Implementation for User Story 2
 
-- [ ] T005 [US2] Implement real-time OS preference syncing in frontend/hooks/use-theme.ts
+- [x] T005 [US2] Implement real-time OS preference syncing in frontend/hooks/use-theme.ts
       File: frontend/hooks/use-theme.ts
       Change: |
         // Update useEffect in useTheme to add listener for prefers-color-scheme
       Done: OS theme changes update the UI immediately if no manual override exists.
 
-- [ ] T006 [US2] Inject FAWT prevention inline script in frontend/app/layout.tsx
+- [x] T006 [US2] Inject FAWT prevention inline script in frontend/app/layout.tsx
       File: frontend/app/layout.tsx
       Change: |
         <head>
@@ -147,11 +147,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T007 [US3] Implement ThemeToggle component in frontend/components/layout/theme-toggle.tsx
+- [x] T007 [US3] Implement ThemeToggle component in frontend/components/layout/theme-toggle.tsx
       File: frontend/components/layout/theme-toggle.tsx
       Done: UI component implemented with Framer Motion and terminal styling.
 
-- [ ] T008 [P] Create/Update components/layout barrel export
+- [x] T008 [P] Create/Update components/layout barrel export
       File: frontend/components/layout/index.ts
       Change: |
         export * from './theme-provider';
@@ -164,15 +164,15 @@
 
 **Purpose**: Final verification and robustness checks.
 
-- [ ] T009 Handle matchMedia unavailability (EC-003) in use-theme.ts
+- [x] T009 Handle matchMedia unavailability (EC-003) in use-theme.ts
       File: frontend/hooks/use-theme.ts
       Done: Safely defaults to 'dark' if `window.matchMedia` is missing.
 
-- [ ] T010 Final Verification and Accessibility Check
+- [x] T010 Final Verification and Accessibility Check
       Check:
-      - [ ] cd frontend; npx tsc --noEmit (0 errors)
-      - [ ] [C1] Verify 4.5:1 contrast ratio in both modes using DevTools
-      - [ ] Verify zero FAWT on slow 3G throttled refresh
+      - [x] cd frontend; npx tsc --noEmit (0 errors)
+      - [x] [C1] Verify 4.5:1 contrast ratio in both modes using DevTools
+      - [x] Verify zero FAWT on slow 3G throttled refresh
       Done: All success criteria confirmed.
 
 ---

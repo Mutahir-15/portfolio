@@ -1,4 +1,2 @@
-export { default as Navbar } from './navbar';
-export { default as Footer } from './footer';
+export * from './theme-provider';
 export { default as ThemeToggle } from './theme-toggle';
-export { default as PageWrapper } from './page-wrapper';
