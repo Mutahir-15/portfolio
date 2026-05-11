@@ -106,13 +106,39 @@
 
 - [ ] T005 [US2] Implement Navbar desktop links
       File: `frontend/components/layout/navbar.tsx`
-      Change: Add desktop nav links array and render with hover transitions.
-      Done: 5 links in [label] format, hidden on mobile, hover color transition 150ms.
+      Change: |
+        Define navLinks array as a typed constant at the top of the file (above the component):
+
+        interface NavLink {
+          label: string
+          href:  string
+        }
+
+        const navLinks: NavLink[] = [
+          { label: '[about]',    href: '#about'    },
+          { label: '[skills]',   href: '#skills'   },
+          { label: '[projects]', href: '#projects' },
+          { label: '[timeline]', href: '#timeline' },
+          { label: '[contact]',  href: '#contact'  },
+        ]
+
+        Render by mapping navLinks — never hardcode link text or href inline in JSX.
+      Done: navLinks array present as typed constant, 5 links render as [label] in font-mono, hidden on mobile (hidden md:flex), hover color transition 150ms opacity only.
 
 - [ ] T006 [US2] Implement Navbar ThemeToggle + scroll animation
       File: `frontend/components/layout/navbar.tsx`
-      Change: Integrate ThemeToggle from S-3 into the right side of the Navbar.
-      Done: ThemeToggle renders right side, Framer Motion translateY 300ms on scroll.
+      Change: |
+        Import useReducedMotion from framer-motion.
+        Define at top of Navbar component: const prefersReducedMotion = useReducedMotion();
+
+        Navbar Framer Motion variants must check this flag:
+        const navbarVariants = {
+          visible: { y: 0, transition: { duration: prefersReducedMotion ? 0 : 0.3 } },
+          hidden: { y: prefersReducedMotion ? 0 : '-100%', transition: { duration: prefersReducedMotion ? 0 : 0.3 } }
+        }
+
+        When prefersReducedMotion is true, Navbar stays permanently visible (UX accessibility requirement).
+      Done: ThemeToggle renders right side, scroll hide/show disabled when reduced motion is preferred. Constitution Pillar IV satisfied.
 
 - [ ] T007 [US2] Implement Navbar mobile hamburger button
       File: `frontend/components/layout/navbar.tsx`
@@ -121,8 +147,15 @@
 
 - [ ] T008 [US2] Implement Navbar mobile dropdown menu
       File: `frontend/components/layout/navbar.tsx`
-      Change: Use `AnimatePresence` and `motion.div` for the dropdown menu.
-      Done: 5 links stacked, Framer Motion opacity + translateY 200ms, closes on link click.
+      Change: |
+        Reuse the same prefersReducedMotion constant.
+        Mobile menu Framer Motion variants:
+        const menuVariants = {
+          open: { opacity: 1, y: 0, transition: { duration: prefersReducedMotion ? 0 : 0.2 } },
+          closed: { opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : -8, transition: { duration: prefersReducedMotion ? 0 : 0.2 } }
+        }
+        When prefersReducedMotion is true, menu appears/disappears instantly.
+      Done: 5 links stacked, animates only when reduced motion is not preferred.
 
 - [ ] T009 [US2] Add ARIA attributes to Navbar
       File: `frontend/components/layout/navbar.tsx`
@@ -146,10 +179,12 @@
         import { PageWrapper } from './page-wrapper';
 
         export default function Footer() {
+          const currentYear = new Date().getFullYear();
+
           return (
             <footer className="py-6 border-t border-light-border dark:border-dark-border font-mono terminal-sm">
               <PageWrapper className="flex justify-between items-center">
-                <span className="text-light-muted dark:text-dark-muted">© 2025 Mutahir Bin Athar</span>
+                <span className="text-light-muted dark:text-dark-muted">© {currentYear} Mutahir Bin Athar</span>
                 <a 
                   href="https://github.com/Mutahir-15" 
                   target="_blank" 
@@ -163,7 +198,7 @@
             </footer>
           );
         }
-      Done: © 2025 Mutahir Bin Athar on left, [github] link to Mutahir-15 on right, wrapped in PageWrapper.
+      Done: Footer renders current year dynamically. No hardcoded 2025 anywhere in footer.tsx.
 
 ---
 

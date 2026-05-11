@@ -58,6 +58,8 @@ As a user, I want to see copyright information and a link to the project source/
 - **EC-001: Navigation Jitter**: How does the system handle small scroll movements? Resolution: Throttled updates and a 5px delta threshold in scroll direction detection.
 - **EC-002: Content Overlap**: How is content prevented from being hidden behind the fixed navbar? Resolution: The root `<main>` element must have top padding (`pt-16`) matching the navbar height.
 - **EC-003: Theme Toggle Reliability**: Ensure no hydration mismatches or SSR conflicts with the theme toggle. Resolution: Navbar and ThemeToggle are Client Components; FAWT script handles early theme application.
+- **EC-004: PageWrapper className collision**: The optional className prop uses nullish coalescing (?? '') to safely append — never passes 'undefined' as a class string.
+- **EC-005: Footer year hardcoded**: resolved — dynamic via `new Date().getFullYear()` in Server Component `footer.tsx`.
 
 ## Requirements *(mandatory)*
 
