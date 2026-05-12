@@ -1,10 +1,14 @@
 import React from 'react';
 
-// TODO: Implement PageWrapper
-export default function PageWrapper({
-  children,
-}: {
+interface PageWrapperProps {
   children: React.ReactNode;
-}) {
-  return <>{children}</>;
+  className?: string;
+}
+
+export default function PageWrapper({ children, className }: PageWrapperProps) {
+  return (
+    <div className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${className ?? ''}`}>
+      {children}
+    </div>
+  );
 }

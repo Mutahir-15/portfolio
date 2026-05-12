@@ -9,7 +9,7 @@
 
 **Purpose**: Verify environment and dependencies.
 
-- [ ] T001 Verify Framer Motion installation
+- [x] T001 Verify Framer Motion installation
       Action: cd frontend && npm list framer-motion
       Done: import { motion } from 'framer-motion' resolves without error. If missing: npm install framer-motion.
 
@@ -19,7 +19,7 @@
 
 **Purpose**: Core components required by all user stories.
 
-- [ ] T002 [US1] Implement PageWrapper component
+- [x] T002 [US1] Implement PageWrapper component
       File: `frontend/components/layout/page-wrapper.tsx`
       Change: |
         import React from 'react';
@@ -48,7 +48,7 @@
 
 ### Implementation for User Story 2
 
-- [ ] T003 [US2] Implement useScrollDirection hook in navbar.tsx
+- [x] T003 [US2] Implement useScrollDirection hook in navbar.tsx
       File: `frontend/components/layout/navbar.tsx`
       Change: |
         'use client';
@@ -75,7 +75,7 @@
         }
       Done: Returns 'up' | 'down', delta > 5px threshold, cleans up listener on unmount.
 
-- [ ] T004 [US2] Implement Navbar shell and logo
+- [x] T004 [US2] Implement Navbar shell and logo
       File: `frontend/components/layout/navbar.tsx`
       Change: |
         import { motion, AnimatePresence } from 'framer-motion';
@@ -104,7 +104,7 @@
         }
       Done: Fixed position, h-16, backdrop-blur, "> MBA_" logo with animate-blink cursor.
 
-- [ ] T005 [US2] Implement Navbar desktop links
+- [x] T005 [US2] Implement Navbar desktop links
       File: `frontend/components/layout/navbar.tsx`
       Change: |
         Define navLinks array as a typed constant at the top of the file (above the component):
@@ -125,7 +125,7 @@
         Render by mapping navLinks — never hardcode link text or href inline in JSX.
       Done: navLinks array present as typed constant, 5 links render as [label] in font-mono, hidden on mobile (hidden md:flex), hover color transition 150ms opacity only.
 
-- [ ] T006 [US2] Implement Navbar ThemeToggle + scroll animation
+- [x] T006 [US2] Implement Navbar ThemeToggle + scroll animation
       File: `frontend/components/layout/navbar.tsx`
       Change: |
         Import useReducedMotion from framer-motion.
@@ -140,12 +140,12 @@
         When prefersReducedMotion is true, Navbar stays permanently visible (UX accessibility requirement).
       Done: ThemeToggle renders right side, scroll hide/show disabled when reduced motion is preferred. Constitution Pillar IV satisfied.
 
-- [ ] T007 [US2] Implement Navbar mobile hamburger button
+- [x] T007 [US2] Implement Navbar mobile hamburger button
       File: `frontend/components/layout/navbar.tsx`
       Change: Add hamburger button with divs for lines, toggling `isMenuOpen`.
       Done: Visible mobile only, aria-label, aria-expanded, toggles isMenuOpen.
 
-- [ ] T008 [US2] Implement Navbar mobile dropdown menu
+- [x] T008 [US2] Implement Navbar mobile dropdown menu
       File: `frontend/components/layout/navbar.tsx`
       Change: |
         Reuse the same prefersReducedMotion constant.
@@ -157,7 +157,7 @@
         When prefersReducedMotion is true, menu appears/disappears instantly.
       Done: 5 links stacked, animates only when reduced motion is not preferred.
 
-- [ ] T009 [US2] Add ARIA attributes to Navbar
+- [x] T009 [US2] Add ARIA attributes to Navbar
       File: `frontend/components/layout/navbar.tsx`
       Change: Ensure all AC-001 through AC-006 accessibility requirements are met.
       Done: nav aria-label, button aria-label, aria-expanded, logo aria-label satisfied.
@@ -172,7 +172,7 @@
 
 ### Implementation for User Story 3
 
-- [ ] T010 [US3] Implement Footer component
+- [x] T010 [US3] Implement Footer component
       File: `frontend/components/layout/footer.tsx`
       Change: |
         import React from 'react';
@@ -206,12 +206,12 @@
 
 **Purpose**: Integration and final verification.
 
-- [ ] T011 Extend layout.tsx with Navbar + Footer
+- [x] T011 Extend layout.tsx with Navbar + Footer
       File: `frontend/app/layout.tsx`
       Change: Add `<Navbar />` and `<Footer />` around `<main className="pt-16">`.
       Done: S-3 and S-4 content intact; root layout structural shell complete.
 
-- [ ] T012 Update layout barrel export
+- [x] T012 Update layout barrel export
       File: `frontend/components/layout/index.ts`
       Change: |
         export { default as PageWrapper } from './page-wrapper';
@@ -220,11 +220,11 @@
         export { default as ThemeToggle } from './theme-toggle';
       Done: All 4 exports present — PageWrapper, Navbar, Footer, ThemeToggle.
 
-- [ ] T013 TypeScript verification
+- [x] T013 TypeScript verification
       Action: cd frontend && npx tsc --noEmit
       Done: EXACTLY 0 TypeScript errors.
 
-- [ ] T014 Visual verification checklist
+- [x] T014 Visual verification checklist
       Action: Manual audit of SC-001 through SC-015 in browser.
       Done: All success criteria confirmed.
 
