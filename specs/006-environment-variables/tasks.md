@@ -100,7 +100,64 @@ description: "Task list for Environment Variable Validation implementation"
 **Purpose**: Final verification and cleanup
 
 - [ ] T020 [P] Run `tsc --noEmit` in `frontend/` to ensure zero environment-related type errors
-- [ ] T021 [P] Audit codebase to ensure all `process.env` and `os.environ` access is replaced by `env` or `settings`
+- [ ] T021 [P] Run deterministic security audit
+  File: frontend/ and backend/ (recursive grep)
+
+  ── AUDIT 1: No raw process.env in frontend ──────────
+  Run:
+    grep -rn "process\.env" frontend/ \
+      --include="*.ts" --include="*.tsx" \
+      | grep -v "lib/env.ts"
+
+  Expected: 0 lines of output
+  Fail condition: any result means a component is
+  reading env vars directly — Constitution VI violation
+
+  ── AUDIT 2: No os.environ in backend ────────────────
+  Run:
+    grep -rn "os\.environ" backend/ \
+      --include="*.py" \
+      | grep -v "lib/config.py"
+
+  Expected: 0 lines of output
+  Fail condition: any result means a route/agent is
+  reading env vars directly — Constitution VI violation
+
+  ── AUDIT 3: No frontend exposure of backend secrets ─
+  Run:
+    grep -rn "GEMINI_API_KEY\|RESEND_API_KEY" frontend/ \
+      --include="*.ts" --include="*.tsx" \
+      --include="*.env*" --include="*.json"
+
+  Expected: 0 lines of output
+  Fail condition: any result = critical security leak
+
+  ── AUDIT 4: No hardcoded API keys or tokens ─────────
+  Run:
+    grep -rEn \
+      "(AIza|sk-|rk_live|rk_test|Bearer [A-Za-z0-9])" \
+      frontend/ backend/ \
+      --include="*.ts" --include="*.tsx" \
+      --include="*.py" \
+      --exclude-dir=".git" \
+      --exclude-dir="node_modules"
+
+  Expected: 0 lines of output
+  Pattern explanation:
+    AIza     → Google/Gemini API key prefix
+    sk-      → OpenAI-style key prefix
+    rk_live  → Resend live key prefix
+    rk_test  → Resend test key prefix
+    Bearer * → Hardcoded auth token
+
+  ── AUDIT 5: Confirm settings singleton is sole export ─
+  Run:
+    grep -n "^settings = Settings()" backend/lib/config.py
+
+  Expected: exactly 1 match
+  Fail: 0 matches = singleton not instantiated
+        2+ matches = multiple instances created
+
 - [ ] T022 [P] Verify `ALLOWED_ORIGINS` correctly parses whitespace-heavy comma lists (EC-003)
 - [ ] T023 [P] Final run-through of all `quickstart.md` validation steps
 
