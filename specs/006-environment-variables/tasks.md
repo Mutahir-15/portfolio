@@ -23,11 +23,11 @@ description: "Task list for Environment Variable Validation implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Verify `frontend/.gitignore` contains `.env.local` and `.env.local.example` is NOT ignored
-- [ ] T002 [P] Verify `backend/.gitignore` contains `.env` and `.env.example` is NOT ignored
-- [ ] T003 [P] Install `zod` and `server-only` in `frontend/` via `npm install`
-- [ ] T004 [P] Finalize `frontend/.env.local.example` with `NEXT_PUBLIC_API_URL` and comments
-- [ ] T005 [P] Finalize `backend/.env.example` with all 6 required/optional variables and comments
+- [x] T001 [P] Verify `frontend/.gitignore` contains `.env.local` and `.env.local.example` is NOT ignored
+- [x] T002 [P] Verify `backend/.gitignore` contains `.env` and `.env.example` is NOT ignored
+- [x] T003 [P] Install `zod` and `server-only` in `frontend/` via `npm install`
+- [x] T004 [P] Finalize `frontend/.env.local.example` with `NEXT_PUBLIC_API_URL` and comments
+- [x] T005 [P] Finalize `backend/.env.example` with all 6 required/optional variables and comments
 
 ---
 
@@ -35,8 +35,8 @@ description: "Task list for Environment Variable Validation implementation"
 
 **Purpose**: Core infrastructure for environment handling
 
-- [ ] T006 [P] Create `frontend/lib/env.ts` with `server-only` import and basic Zod export structure
-- [ ] T007 [P] Create `backend/lib/config.py` with `pydantic-settings` import and `Settings` class skeleton
+- [x] T006 [P] Create `frontend/lib/env.ts` with `server-only` import and basic Zod export structure
+- [x] T007 [P] Create `backend/lib/config.py` with `pydantic-settings` import and `Settings` class skeleton
 
 **Checkpoint**: Foundation ready - user story implementation can now begin.
 
@@ -50,11 +50,11 @@ description: "Task list for Environment Variable Validation implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Implement Pydantic validation for all 6 backend variables in `backend/lib/config.py`
-- [ ] T009 [US1] Implement comma-separated list parsing for `ALLOWED_ORIGINS` in `backend/lib/config.py`
-- [ ] T010 [US1] Implement startup guard in `backend/main.py` using `try...except` around settings import
-- [ ] T011 [US1] Add descriptive `[ENV ERROR]` logging and `exit(1)` to startup guard in `backend/main.py`
-- [ ] T012 [US1] Test: Verify backend process exits with code 1 and error log when required variables are missing
+- [x] T008 [US1] Implement Pydantic validation for all 6 backend variables in `backend/lib/config.py`
+- [x] T009 [US1] Implement comma-separated list parsing for `ALLOWED_ORIGINS` in `backend/lib/config.py`
+- [x] T010 [US1] Implement startup guard in `backend/main.py` using `try...except` around settings import
+- [x] T011 [US1] Add descriptive `[ENV ERROR]` logging and `exit(1)` to startup guard in `backend/main.py`
+- [x] T012 [US1] Test: Verify backend process exits with code 1 and error log when required variables are missing
 
 **Checkpoint**: User Story 1 functional - Backend is now fail-safe.
 
@@ -68,13 +68,13 @@ description: "Task list for Environment Variable Validation implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Complete Zod schema validation for `NEXT_PUBLIC_API_URL` in `frontend/lib/env.ts`
-- [ ] T014 [US2] Implement fail-loud error handling with `[ENV ERROR]` prefix in `frontend/lib/env.ts`
-- [ ] T015 [US2] Export inferred TypeScript types for the `env` object in `frontend/lib/env.ts`
-- [ ] T016 [US2] Test: Verify IDE autocompletion and type checking (tsc) for env.NEXT_PUBLIC_API_URL
-- [ ] T016a [US2] Test: Measure env validation startup overhead (Target: < 50ms)
-- [ ] T016b [US2] Audit for NEXT_PUBLIC_ secret exposure in frontend/
-- [ ] T017 [US2] Test: Verify frontend build/runtime fails loudly if variables are malformed
+- [x] T013 [US2] Complete Zod schema validation for `NEXT_PUBLIC_API_URL` in `frontend/lib/env.ts`
+- [x] T014 [US2] Implement fail-loud error handling with `[ENV ERROR]` prefix in `frontend/lib/env.ts`
+- [x] T015 [US2] Export inferred TypeScript types for the `env` object in `frontend/lib/env.ts`
+- [x] T016 [US2] Test: Verify IDE autocompletion and type checking (tsc) for env.NEXT_PUBLIC_API_URL
+- [x] T016a [US2] Test: Measure env validation startup overhead (Target: < 50ms)
+- [x] T016b [US2] Audit for NEXT_PUBLIC_ secret exposure in frontend/
+- [x] T017 [US2] Test: Verify frontend build/runtime fails loudly if variables are malformed
 
 **Checkpoint**: User Story 2 functional - Frontend is now type-safe and fail-safe.
 
@@ -88,8 +88,8 @@ description: "Task list for Environment Variable Validation implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T018 [US3] Override `__repr__` in the `Settings` class in `backend/lib/config.py` to mask sensitive keys
-- [ ] T019 [US3] Test: Verify `print(settings)` output masks sensitive variables (SC-004)
+- [x] T018 [US3] Override `__repr__` in the `Settings` class in `backend/lib/config.py` to mask sensitive keys
+- [x] T019 [US3] Test: Verify `print(settings)` output masks sensitive variables (SC-004)
 
 **Checkpoint**: All user stories complete and independently functional.
 
@@ -99,8 +99,8 @@ description: "Task list for Environment Variable Validation implementation"
 
 **Purpose**: Final verification and cleanup
 
-- [ ] T020 [P] Run `tsc --noEmit` in `frontend/` to ensure zero environment-related type errors
-- [ ] T021 [P] Run deterministic security audit
+- [x] T020 [P] Run `tsc --noEmit` in `frontend/` to ensure zero environment-related type errors
+- [x] T021 [P] Run deterministic security audit
   File: frontend/ and backend/ (recursive grep)
 
   ── AUDIT 1: No raw process.env in frontend ──────────
@@ -158,8 +158,8 @@ description: "Task list for Environment Variable Validation implementation"
   Fail: 0 matches = singleton not instantiated
         2+ matches = multiple instances created
 
-- [ ] T022 [P] Verify `ALLOWED_ORIGINS` correctly parses whitespace-heavy comma lists (EC-003)
-- [ ] T023 [P] Final run-through of all `quickstart.md` validation steps
+- [x] T022 [P] Verify `ALLOWED_ORIGINS` correctly parses whitespace-heavy comma lists (EC-003)
+- [x] T023 [P] Final run-through of all `quickstart.md` validation steps
 
 ---
 
