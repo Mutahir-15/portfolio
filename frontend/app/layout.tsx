@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/layout/theme-provider';
+import { Navbar, Footer } from '@/components/layout';
 import './globals.css';
 
 const jetbrainsMono = JetBrains_Mono({
@@ -42,7 +43,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Navbar />
+          <main className="pt-16">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
