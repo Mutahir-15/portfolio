@@ -73,6 +73,7 @@ description: "Task list for Environment Variable Validation implementation"
 - [ ] T015 [US2] Export inferred TypeScript types for the `env` object in `frontend/lib/env.ts`
 - [ ] T016 [US2] Test: Verify IDE autocompletion and type checking (tsc) for env.NEXT_PUBLIC_API_URL
 - [ ] T016a [US2] Test: Measure env validation startup overhead (Target: < 50ms)
+- [ ] T016b [US2] Audit for NEXT_PUBLIC_ secret exposure in frontend/
 - [ ] T017 [US2] Test: Verify frontend build/runtime fails loudly if variables are malformed
 
 **Checkpoint**: User Story 2 functional - Frontend is now type-safe and fail-safe.
