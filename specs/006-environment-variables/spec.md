@@ -86,5 +86,7 @@ As a security-conscious developer, I want sensitive environment variables (like 
 - **SC-002**: `tsc --noEmit` returns 0 errors across the frontend.
 - **SC-003**: Python type checking (if used) or runtime instantiation succeeds with a valid `.env`.
 - **SC-004**: Sensitive keys are 100% masked in `__repr__` output.
-- **SC-005**: 100% of environment variable access in the codebase is routed through the central validation modules.
-- **SC-006**: Missing required variables result in immediate process exit (Exit Code 1) with descriptive logs.
+- SC-005: 100% of environment variable access in the codebase is routed through the central validation modules.
+- SC-006: Missing required variables result in immediate process exit (Exit Code 1) with descriptive logs.
+- SC-014: env.ts import time < 50ms on cold start.
+- SC-015: config.py import time < 50ms on cold start.

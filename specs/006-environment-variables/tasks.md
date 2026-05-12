@@ -71,7 +71,8 @@ description: "Task list for Environment Variable Validation implementation"
 - [ ] T013 [US2] Complete Zod schema validation for `NEXT_PUBLIC_API_URL` in `frontend/lib/env.ts`
 - [ ] T014 [US2] Implement fail-loud error handling with `[ENV ERROR]` prefix in `frontend/lib/env.ts`
 - [ ] T015 [US2] Export inferred TypeScript types for the `env` object in `frontend/lib/env.ts`
-- [ ] T016 [US2] Test: Verify IDE autocompletion and type checking (tsc) for `env.NEXT_PUBLIC_API_URL`
+- [ ] T016 [US2] Test: Verify IDE autocompletion and type checking (tsc) for env.NEXT_PUBLIC_API_URL
+- [ ] T016a [US2] Test: Measure env validation startup overhead (Target: < 50ms)
 - [ ] T017 [US2] Test: Verify frontend build/runtime fails loudly if variables are malformed
 
 **Checkpoint**: User Story 2 functional - Frontend is now type-safe and fail-safe.
