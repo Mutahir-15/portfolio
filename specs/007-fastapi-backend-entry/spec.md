@@ -85,7 +85,112 @@ As a system owner, I want all incoming traffic to be rate-limited and traced wit
 - **FR-007**: System MUST log startup and shutdown events without exposing sensitive environment variables.
 - **FR-008**: System MUST enforce a default rate limit of 10 requests per minute per IP using `slowapi`.
 - **FR-009**: System MUST provide stub endpoints for all Phase 3 and Phase 4 features to allow frontend integration.
-- **FR-010**: System MUST define Pydantic request/response models with validation (e.g., regex patterns for roles, email validation).
+
+  STUB VALIDATION RULE:
+  All stub endpoints MUST accept and validate their
+  Pydantic request models even in stub form.
+  Rationale:
+    - Validates models are correctly imported
+    - Catches field constraint errors early
+    - Ensures API contract is correct before
+      Phase 3/4 implementation begins
+    - Frontend integration can be tested against
+      real validation behavior immediately
+
+  Updated stub implementations:
+
+  chat_router.py:
+    from backend.models.chat_models import (
+      ChatRequest,
+      ChatResponse,
+    )
+
+    @router.post('', response_model=ChatResponse)
+    async def chat(
+      request: ChatRequest,
+    ) -> ChatResponse:
+      # TODO: Replace with chat_agent in Phase 4
+      return ChatResponse(
+        reply='Chat agent coming in Phase 4.',
+        request_id='stub',
+      )
+
+  contact_router.py:
+    from backend.models.contact_models import (
+      ContactRequest,
+      ContactResponse,
+    )
+
+    @router.post('', response_model=ContactResponse)
+    async def contact(
+      request: ContactRequest,
+    ) -> ContactResponse:
+      # TODO: Replace with contact_agent in Phase 4
+      return ContactResponse(
+        success=True,
+        message='Contact agent coming in Phase 4.',
+        request_id='stub',
+      )
+
+  projects_router.py:
+    No request body needed (GET endpoints).
+    Return typed dict responses as already defined.
+
+  Verification:
+    # Test chat stub validation
+    curl -X POST http://localhost:8000/api/chat \
+      -H "Content-Type: application/json" \
+      -d '{"message": ""}'
+    Expected: 422 Unprocessable Entity
+             (min_length=1 violated)
+
+    curl -X POST http://localhost:8000/api/chat \
+      -H "Content-Type: application/json" \
+      -d '{"message": "Hello"}'
+    Expected: 200 with stub ChatResponse
+
+    # Test contact stub validation
+    curl -X POST http://localhost:8000/api/contact \
+      -H "Content-Type: application/json" \
+      -d '{"name": "M", "email": "bad", "message": "hi"}'
+    Expected: 422 Unprocessable Entity
+             (name min_length=2, invalid email, message
+              min_length=10 all violated)
+- **FR-010**: Pydantic Request/Response Models
+
+  chat_models.py — THREE models:
+
+    ChatMessage (internal message shape):
+      role: str — ONLY this model uses role validation
+        Field constraint: pattern='^(user|assistant)$'
+        Rationale: enforces valid conversation turns,
+        prevents injection of system-level role strings
+      content: str
+        Field constraint: min_length=1, max_length=2000
+
+    ChatRequest (incoming API request):
+      message: str
+        Field constraint: min_length=1, max_length=500
+      history: list[ChatMessage]
+        Field constraint: max_length=20
+      NOTE: ChatRequest has NO role field —
+            role belongs to ChatMessage only
+
+    ChatResponse (outgoing API response):
+      reply: str
+      request_id: str
+      NOTE: ChatResponse has NO role field
+
+  contact_models.py — TWO models:
+    ContactRequest and ContactResponse
+    NEITHER model has a role field.
+    Role validation is EXCLUSIVE to ChatMessage.
+    Do not add role fields to contact models.
+
+  Verification grep after implementation:
+    grep -n "role" backend/models/contact_models.py
+    Expected: 0 results
+    Any match = incorrect implementation
 - **FR-011**: System MUST include stub files for all AI agents (Chat, Summary, Contact) ready for implementation.
 - **FR-012**: System MUST include library stubs for Gemini client and agent system prompts.
 - **FR-013**: System MUST provide a comprehensive README with setup, environment, and running instructions.
