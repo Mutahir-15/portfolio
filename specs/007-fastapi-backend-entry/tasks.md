@@ -398,6 +398,16 @@ async def global_exception_handler(request: Request, exc: Exception):
 **Run**: `for i in {1..11}; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8000/api/chat; done`
 **Done**: 11th request returns 429.
 
+### TASK-23a: Measure rate limiter overhead latency
+**File**: `backend/` (curl timing commands)
+**Change**:
+1. **Baseline**: Temporarily comment out `SlowAPIMiddleware` in `main.py`, restart, and run:
+   `for i in {1..5}; do curl -s -o /dev/null -w "Baseline %{time_total}s\n" http://localhost:8000/api/health; done`
+2. **With Limiter**: Restore middleware, restart, and run:
+   `for i in {1..5}; do curl -s -o /dev/null -w "With limiter %{time_total}s\n" http://localhost:8000/api/health; done`
+3. **Calculate**: `overhead = (with_limiter_avg - baseline_avg) * 1000`
+**Done**: Overhead < 5ms confirmed and recorded.
+
 ### TASK-24: Run Ruff linter
 **Run**: `cd backend && python -m ruff check .`
 **Done**: 0 errors.
