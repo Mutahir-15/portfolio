@@ -110,16 +110,16 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 
 class ChatMessage(BaseModel):
-    role: str = Field(..., pattern="^(user|assistant|system)$")
-    content: str
+    role: str = Field(..., pattern="^(user|assistant)$")
+    content: str = Field(..., min_length=1, max_length=2000)
 
 class ChatRequest(BaseModel):
-    messages: List[ChatMessage]
-    stream: bool = False
+    message: str = Field(..., min_length=1, max_length=500)
+    history: List[ChatMessage] = Field(default_factory=list, max_length=20)
 
 class ChatResponse(BaseModel):
-    content: str
-    request_id: Optional[str] = None
+    reply: str
+    request_id: str
 ```
 **Done**: Models importable and constraints correct.
 
