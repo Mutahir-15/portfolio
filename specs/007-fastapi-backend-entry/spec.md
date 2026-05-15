@@ -210,6 +210,7 @@ As a system owner, I want all incoming traffic to be rate-limited and traced wit
 - **SC-001**: Server starts and becomes ready for requests in under 2 seconds.
 - **SC-002**: Health check endpoint responds in under 50ms.
 - **SC-003**: Rate limiter overhead adds less than 5ms to any request.
+  - *Note*: Rate limiter overhead verified manually via curl timing in Phase 1. Automated measurement deferred to Phase 5 (Polish & Performance) via Lighthouse and k6 load testing.
 - **SC-004**: All API responses (100%) contain a unique `X-Request-ID`.
 - **SC-005**: 11th request in one minute from the same IP consistently returns 429.
 - **SC-006**: API documentation loads and accurately reflects all registered routes.
