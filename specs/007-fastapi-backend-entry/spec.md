@@ -193,6 +193,7 @@ As a system owner, I want all incoming traffic to be rate-limited and traced wit
     Any match = incorrect implementation
 - **FR-011**: System MUST include stub files for all AI agents (Chat, Summary, Contact) ready for implementation.
 - **FR-012**: System MUST include library stubs for Gemini client and agent system prompts.
+  - *PHASE 3 NOTE*: When implementing `gemini_client.py`, follow the implementation contract defined in the file docstring exactly. Constitution Pillar V mandates the custom model provider pattern — no direct Google SDK usage.
 - **FR-013**: System MUST provide a comprehensive README with setup, environment, and running instructions.
 
 ### Key Entities *(include if feature involves data)*
