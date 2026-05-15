@@ -212,11 +212,11 @@ router = APIRouter(prefix="/chat", tags=["AI Chat"])
 @limiter.limit("10/minute")
 async def chat_endpoint(request: Request, chat_req: ChatRequest):
     return ChatResponse(
-        content="AI Chat is coming soon in Phase 4.",
-        request_id=getattr(request.state, "request_id", None)
+        reply="AI Chat is coming soon in Phase 4.",
+        request_id=getattr(request.state, "request_id", "stub")
     )
 ```
-**Done**: APIRouter with `/chat` prefix, stub POST.
+**Done**: APIRouter with `/chat` prefix, stub POST with model validation.
 
 ### TASK-11: Implement routers/contact_router.py stub
 **File**: `backend/routers/contact_router.py`
@@ -234,10 +234,10 @@ async def contact_endpoint(request: Request, contact_req: ContactRequest):
     return ContactResponse(
         success=True,
         message="Message received. Logic coming in Phase 4.",
-        request_id=getattr(request.state, "request_id", None)
+        request_id=getattr(request.state, "request_id", "stub")
     )
 ```
-**Done**: APIRouter with `/contact` prefix, stub POST.
+**Done**: APIRouter with `/contact` prefix, stub POST with model validation.
 
 ### TASK-12: Implement routers/projects_router.py stub
 **File**: `backend/routers/projects_router.py`
@@ -249,11 +249,11 @@ router = APIRouter(prefix="/projects", tags=["Projects"])
 
 @router.get("/")
 async def list_projects(request: Request):
-    return {"projects": [], "count": 0, "request_id": getattr(request.state, "request_id", None)}
+    return {"projects": [], "count": 0, "request_id": getattr(request.state, "request_id", "stub")}
 
 @router.get("/summaries")
 async def project_summaries(request: Request):
-    return {"summaries": {}, "request_id": getattr(request.state, "request_id", None)}
+    return {"summaries": {}, "request_id": getattr(request.state, "request_id", "stub")}
 ```
 **Done**: APIRouter with `/projects` prefix, two stub GETs.
 
@@ -384,13 +384,15 @@ async def global_exception_handler(request: Request, exc: Exception):
 **Run**: `cd backend && uvicorn main:app --reload`
 **Done**: Server starts without errors, logs show environment and origins.
 
-### TASK-22: Curl all endpoints
+### TASK-22: Curl all endpoints and verify validation
 **Run**:
 - `curl http://localhost:8000/api/health`
-- `curl -X POST http://localhost:8000/api/chat -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"hi"}]}'`
+- `curl -X POST http://localhost:8000/api/chat -H "Content-Type: application/json" -d '{"message": "Hello"}'`
+- `curl -X POST http://localhost:8000/api/chat -H "Content-Type: application/json" -d '{"message": ""}'` (Expect 422)
 - `curl -X POST http://localhost:8000/api/contact -H "Content-Type: application/json" -d '{"name":"Test","email":"test@example.com","subject":"Hello","message":"Test message"}'`
+- `curl -X POST http://localhost:8000/api/contact -H "Content-Type: application/json" -d '{"name": "M", "email": "bad", "message": "hi"}'` (Expect 422)
 - `curl http://localhost:8000/api/projects`
-**Done**: All return 200 OK with `X-Request-ID` in headers.
+**Done**: All return correct status codes (200 or 422) with `X-Request-ID` in headers.
 
 ### TASK-23: Test rate limiting
 **Run**: `for i in {1..11}; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8000/api/chat; done`
