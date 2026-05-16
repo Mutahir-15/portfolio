@@ -1,4 +1,4 @@
-"""Prompt templates for AI agents."""
-
-SYSTEM_PROMPT = """You are a portfolio assistant..."""
-# TODO: Implement prompt templates
+"""
+Agent Prompts (Phase 4).
+"""
+# TODO: Implement prompts in Phase 4

@@ -1,7 +1,6 @@
 from typing import List
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, field_validator
-import os
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
