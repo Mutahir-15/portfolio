@@ -1,8 +1,14 @@
-"""Chat models — Pydantic schemas for chat endpoints."""
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import List
+
+class ChatMessage(BaseModel):
+    role: str = Field(..., pattern="^(user|assistant)$")
+    content: str = Field(..., min_length=1, max_length=2000)
 
 class ChatRequest(BaseModel):
-    message: str
+    message: str = Field(..., min_length=1, max_length=500)
+    history: List[ChatMessage] = Field(default_factory=list, max_length=20)
 
 class ChatResponse(BaseModel):
-    response: str
+    reply: str
+    request_id: str

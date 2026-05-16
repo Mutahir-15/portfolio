@@ -12,8 +12,8 @@ description: "Task list for FastAPI Backend Entry Point implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [Setup] Add pydantic[email] to requirements.txt (backend/requirements.txt)
-- [ ] T002 [Foundational] [P] Implement rate limiter utility (backend/lib/rate_limiter.py)
+- [x] T001 [Setup] Add pydantic[email] to requirements.txt (backend/requirements.txt)
+- [x] T002 [Foundational] [P] Implement rate limiter utility (backend/lib/rate_limiter.py)
 
 ---
 
@@ -21,16 +21,16 @@ description: "Task list for FastAPI Backend Entry Point implementation"
 
 **Purpose**: Core data structures and component stubs that MUST be complete before user stories
 
-- [ ] T003 [Foundational] [P] Implement Chat models (backend/models/chat_models.py)
-- [ ] T004 [Foundational] [P] Implement Contact models (backend/models/contact_models.py)
-- [ ] T005 [Foundational] [P] Create Gemini client stub (backend/lib/gemini_client.py)
-- [ ] T006 [Foundational] [P] Create Prompts stub (backend/lib/prompts.py)
-- [ ] T007 [Foundational] [P] Create Chat agent stub (backend/agents/chat_agent.py)
-- [ ] T008 [Foundational] [P] Create Summary agent stub (backend/agents/summary_agent.py)
-- [ ] T009 [Foundational] [P] Create Contact agent stub (backend/agents/contact_agent.py)
-- [ ] T010 [Foundational] [P] [US3] Create Chat router stub (backend/routers/chat_router.py)
-- [ ] T011 [Foundational] [P] [US3] Create Contact router stub (backend/routers/contact_router.py)
-- [ ] T012 [Foundational] [P] [US3] Create Projects router stub (backend/routers/projects_router.py)
+- [x] T003 [Foundational] [P] Implement Chat models (backend/models/chat_models.py)
+- [x] T004 [Foundational] [P] Implement Contact models (backend/models/contact_models.py)
+- [x] T005 [Foundational] [P] Create Gemini client stub (backend/lib/gemini_client.py)
+- [x] T006 [Foundational] [P] Create Prompts stub (backend/lib/prompts.py)
+- [x] T007 [Foundational] [P] Create Chat agent stub (backend/agents/chat_agent.py)
+- [x] T008 [Foundational] [P] Create Summary agent stub (backend/agents/summary_agent.py)
+- [x] T009 [Foundational] [P] Create Contact agent stub (backend/agents/contact_agent.py)
+- [x] T010 [Foundational] [P] [US3] Create Chat router stub (backend/routers/chat_router.py)
+- [x] T011 [Foundational] [P] [US3] Create Contact router stub (backend/routers/contact_router.py)
+- [x] T012 [Foundational] [P] [US3] Create Projects router stub (backend/routers/projects_router.py)
 
 ---
 
@@ -38,10 +38,10 @@ description: "Task list for FastAPI Backend Entry Point implementation"
 
 **Goal**: Deliver a healthy backend with interactive API documentation.
 
-- [ ] T013 [US1/US2] Initialize FastAPI app and lifespan (backend/main.py)
-- [ ] T014 [US1] [P] Configure CORS middleware (backend/main.py)
-- [ ] T015 [US1] [P] Implement health check endpoint (backend/main.py)
-- [ ] T016 [US1/US3] Register feature routers (backend/main.py)
+- [x] T013 [US1/US2] Initialize FastAPI app and lifespan (backend/main.py)
+- [x] T014 [US1] [P] Configure CORS middleware (backend/main.py)
+- [x] T015 [US1] [P] Implement health check endpoint (backend/main.py)
+- [x] T016 [US1/US3] Register feature routers (backend/main.py)
 
 ---
 
@@ -49,25 +49,25 @@ description: "Task list for FastAPI Backend Entry Point implementation"
 
 **Goal**: Implement rate limiting, request tracing, and global error handling.
 
-- [ ] T017 [US4] [P] Add Request ID middleware (backend/main.py)
-- [ ] T018 [US4] [P] Add Rate Limiter middleware (backend/main.py)
-- [ ] T019 [US4] [P] Implement global exception handler (backend/main.py)
+- [x] T017 [US4] [P] Add Request ID middleware (backend/main.py)
+- [x] T018 [US4] [P] Add Rate Limiter middleware (backend/main.py)
+- [x] T019 [US4] [P] Implement global exception handler (backend/main.py)
 
 ---
 
 ## Phase 5: Polish & Documentation
 
-- [ ] T020 [Polish] Write backend README (backend/README.md)
+- [x] T020 [Polish] Write backend README (backend/README.md)
 
 ---
 
 ## Phase 6: Verification & Quality Control
 
-- [ ] T021 Verify startup and logs
-- [ ] T022 [P] Verify all endpoints via curl
-- [ ] T023 Verify rate limiting enforcement
-- [ ] T024 [P] Run Ruff linter
-- [ ] T025 Verify no sensitive keys in logs
+- [x] T021 Verify startup and logs
+- [x] T022 [P] Verify all endpoints via curl
+- [x] T023 Verify rate limiting enforcement
+- [x] T024 [P] Run Ruff linter
+- [x] T025 Verify no sensitive keys in logs
 
 ---
 

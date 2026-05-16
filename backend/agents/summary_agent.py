@@ -1,5 +1,4 @@
-"""Summary agent — generates project summaries."""
-
-# TODO: Implement SummaryAgent
-class SummaryAgent:
-    pass
+"""
+Summary Agent (Phase 3).
+"""
+# TODO: Implement summary agent in Phase 3
