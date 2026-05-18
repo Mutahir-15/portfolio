@@ -39,16 +39,16 @@ After reading the introduction, the visitor wants to see Mutahir's work or downl
 
 ### User Story 3 - Visual Immersion & Atmosphere (Priority: P3)
 
-The visitor notices a subtle "Matrix rain" animation in the background and a CRT-style scanline overlay, giving the site a "hacker/terminal" aesthetic.
+The visitor notices a "Matrix rain" animation in the background (opacity 0.07 in dark, 0.04 in light) and a CRT-style scanline overlay (alpha 0.03), giving the site a "hacker/terminal" aesthetic.
 
 **Why this priority**: Enhances the professional brand of an AI/Spec-driven engineer through a unique and polished visual identity.
 
-**Independent Test**: Can be verified by observing the background of the Hero section in a dark room/dark mode.
+**Independent Test**: Can be verified by observing the background of the Hero section and inspecting computed styles in DevTools.
 
 **Acceptance Scenarios**:
 
-1. **Given** the site is in dark mode, **When** viewing the background, **Then** a subtle green character animation (Matrix rain) should be visible.
-2. **Given** the site is in dark mode, **When** viewing the Hero section, **Then** a subtle horizontal scanline effect should be visible.
+1. **Given** the site is in dark mode, **When** viewing the background, **Then** a green character animation (Matrix rain) MUST be visible at exactly 0.07 opacity.
+2. **Given** the site is in dark mode, **When** viewing the Hero section, **Then** a horizontal scanline effect MUST be visible with a repeating 2px pattern and 0.03 alpha.
 
 ---
 
@@ -63,12 +63,20 @@ The visitor notices a subtle "Matrix rain" animation in the background and a CRT
 ### Functional Requirements
 
 - **FR-001**: The Hero section MUST occupy the full height of the viewport (`min-h-screen`) and center its content both vertically and horizontally.
-- **FR-002**: The background MUST feature a decorative "Matrix rain" animation using an HTML5 Canvas, rendered with a character drop effect.
+- **FR-002**: The background MUST feature a decorative "Matrix rain" animation using an HTML5 Canvas.
+  - Opacity (exact values):
+    - Dark mode: 0.07
+    - Light mode: 0.04
+  - Deviation rule: Values outside 0.04–0.10 range require explicit approval. Do not tweak for taste.
 - **FR-003**: A "typewriter" animation MUST cycle through an array of professional roles, typing characters one by one, pausing at the end of a word, and then deleting them before starting the next.
 - **FR-004**: The typewriter animation MUST use an `aria-live="polite"` container to ensure role changes are communicated to screen readers.
 - **FR-005**: Two primary Call-to-Action buttons MUST be provided: "View Projects" (internal anchor link) and "Download CV" (file download link).
 - **FR-006**: A "whoami" prompt prefix MUST appear above the main heading to reinforce the terminal theme.
-- **FR-007**: A subtle CRT scanline overlay MUST be applied in dark mode using CSS gradients.
+- **FR-007**: A CRT scanline overlay MUST be applied in dark mode using CSS gradients.
+  - Background: `repeating-linear-gradient(transparent 0px, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)`
+  - Line height: 2px (1px transparent + 1px tinted)
+  - Tint alpha: 0.03 — exact value, do not adjust.
+  - Deviation rule: alpha outside 0.02–0.05 range requires explicit approval.
 - **FR-008**: An animated scroll indicator (e.g., a bouncing arrow) MUST appear at the bottom of the section and disappear once the user scrolls down more than 100px.
 - **FR-009**: All animations MUST be disabled if the user's system preference for reduced motion is active.
 - **FR-010**: The Hero section MUST be responsive, adjusting font sizes (terminal-4xl to terminal-2xl) and button layouts for mobile devices.
@@ -84,3 +92,8 @@ The visitor notices a subtle "Matrix rain" animation in the background and a CRT
 - **SC-003**: Lighthouse Accessibility score for the Hero section is 100/100, including proper ARIA labels for decorative elements and buttons.
 - **SC-004**: Cumulative Layout Shift (CLS) remains at 0 when the typewriter text cycles or when the canvas initializes.
 - **SC-005**: The "Matrix rain" animation maintains a performance target of 60fps on modern devices without causing significant CPU spikes (monitored via devtools).
+- **SC-006**: Matrix rain canvas opacity = 0.07 in dark mode and 0.04 in light mode.
+  - Verified via browser DevTools: Inspect canvas element → Computed styles → opacity.
+  - Expected values: 0.07 (dark), 0.04 (light).
+- **SC-015**: Scanline overlay rgba alpha = 0.03.
+  - Verified via DevTools computed background or by inspecting the inline style/class.
