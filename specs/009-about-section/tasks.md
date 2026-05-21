@@ -137,7 +137,7 @@ export default function TerminalWindow({
         bg-light-surface dark:bg-dark-surface 
         border border-light-border dark:border-dark-border 
         rounded-lg overflow-hidden 
-        shadow-glow dark:shadow-glow
+        dark:shadow-terminal-green
         ${className}
       `}
     >
@@ -322,6 +322,6 @@ Add the multilingual typewriter effect (US2) and info cards (US3) as secondary i
 
 ## Notes
 - `rounded-terminal-lg` is mapped to `rounded-lg` (8px).
-- `shadow-terminal-green` is mapped to `shadow-glow`.
+- `shadow-terminal-green` is used for the dark mode glow effect.
 - `aria-live="polite"` is CRITICAL for the typewriter greeting.
 - Ensure `useReducedMotion` is passed to all motion components.

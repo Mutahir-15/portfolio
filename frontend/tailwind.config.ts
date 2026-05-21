@@ -66,6 +66,11 @@ const config = {
         lg: '0 10px 15px -3px rgba(0, 255, 136, 0.1)',
         xl: '0 20px 25px -5px rgba(0, 255, 136, 0.1)',
         glow: '0 0 15px rgba(0, 255, 136, 0.5)',
+        'terminal-green': '0 0 8px rgba(0,255,136,0.3)',
+        'terminal-cyan': '0 0 8px rgba(0,212,255,0.3)',
+        'terminal-green-lg': '0 0 20px rgba(0,255,136,0.2)',
+        'terminal-cyan-lg': '0 0 20px rgba(0,212,255,0.2)',
+        'terminal-error': '0 0 8px rgba(255,68,68,0.3)',
       },
       keyframes: {
         scanline: {
