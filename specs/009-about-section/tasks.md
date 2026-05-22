@@ -86,7 +86,55 @@
 **Purpose**: Accessibility, final animations, and verification.
 
 - [ ] T020 Implement scroll animations on all elements in frontend/components/sections/about-section.tsx
-- [ ] T021 Apply all ARIA attributes (AC-001 to AC-008) in frontend/components/sections/about-section.tsx
+- [ ] T021 Apply all ARIA attributes
+  Files:   frontend/components/ui/terminal-window.tsx
+           frontend/components/sections/about-section.tsx
+
+  Apply each requirement explicitly:
+
+  AC-001: Add id="about" to the section wrapper
+    <section id="about" ...>
+    Verify: document.getElementById('about') returns
+    the section element
+
+  AC-002: Confirm <h2> exists for screen reader outline
+    The 'about_me' heading must be an <h2> tag — not
+    a <div> or <span> styled to look like a heading
+    Verify: grep -n "<h2" about-section.tsx
+
+  AC-003: TerminalWindow title bar is decorative
+    No aria-label needed on the title bar div
+    Verify: no aria-label on .title-bar element
+
+  AC-004: Traffic light dots container aria-hidden
+    <div aria-hidden="true"> wrapping all 3 dots
+    Verify: grep -n 'aria-hidden="true"' terminal-window.tsx
+
+  AC-005: Greeting container aria-live
+    <div aria-live="polite" aria-atomic="true">
+      wrapping the useTypewriter displayText span
+    Verify: grep -n 'aria-live' about-section.tsx
+
+  AC-006: Blinking cursor aria-hidden
+    The | cursor span must have aria-hidden="true"
+    Verify: grep -n 'aria-hidden' about-section.tsx
+    Expected: at least 1 result on the cursor span
+
+  AC-007: Info cards are read-only — no role needed
+    Cards use semantic <div> with no interactive
+    elements — no additional ARIA required
+    Verify: no button/link elements inside info cards
+
+  AC-008: Color contrast verification
+    Run browser DevTools accessibility checker on:
+      - dark-green text on dark-bg background
+      - dark-muted text on dark-surface background
+      - light-green text on light-bg background
+    All must pass 4.5:1 minimum contrast ratio
+
+  Done:
+    - All 8 criteria explicitly verified
+    - No a11y errors in DevTools accessibility panel
 - [ ] T022 Update sections barrel export in frontend/components/sections/index.ts
 - [ ] T023 TypeScript verification via `cd frontend && tsc --noEmit`
 - [ ] T024 Visual verification of SC-001 through SC-015
