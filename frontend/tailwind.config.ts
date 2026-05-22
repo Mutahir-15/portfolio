@@ -52,9 +52,10 @@ const config = {
       },
       borderRadius: {
         none: '0',
-        sm: '2px',
-        md: '4px',
-                lg: '8px',
+        terminal: '2px',
+        'terminal-sm': '4px',
+        'terminal-md': '6px',
+        'terminal-lg': '8px',
       },
       borderWidth: {
         terminal: '1px',

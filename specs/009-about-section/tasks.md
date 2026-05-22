@@ -136,7 +136,7 @@ export default function TerminalWindow({
       className={`
         bg-light-surface dark:bg-dark-surface 
         border border-light-border dark:border-dark-border 
-        rounded-lg overflow-hidden 
+        rounded-terminal-lg overflow-hidden 
         dark:shadow-terminal-green
         ${className}
       `}
@@ -287,7 +287,7 @@ const infoItems = [
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 * i }}
-        className="p-4 bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-lg"
+        className="p-4 bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-terminal-lg"
       >
         <p className="text-xs font-mono text-light-text-secondary dark:text-dark-text-secondary">{item.label}</p>
         <p className="text-xl font-mono text-light-primary dark:text-dark-primary">{item.value}</p>
@@ -321,7 +321,7 @@ Add the multilingual typewriter effect (US2) and info cards (US3) as secondary i
 ---
 
 ## Notes
-- `rounded-terminal-lg` is mapped to `rounded-lg` (8px).
+- `rounded-terminal-lg` is 8px.
 - `shadow-terminal-green` is used for the dark mode glow effect.
 - `aria-live="polite"` is CRITICAL for the typewriter greeting.
 - Ensure `useReducedMotion` is passed to all motion components.

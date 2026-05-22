@@ -4,8 +4,8 @@
 
 ### 1. Terminal Window Design Tokens
 **Question**: Are `rounded-terminal-lg` and `shadow-terminal-green` defined?
-**Finding**: `tailwind.config.ts` currently has `borderRadius.lg` (8px) and generic `boxShadow` values like `glow`.
-**Decision**: I will use `rounded-lg` and create/use a shadow that matches the "terminal green" glow (e.g., `shadow-terminal-green`). If explicit aliases are required, I will add them to `tailwind.config.ts` in Phase 0.
+**Finding**: `tailwind.config.ts` has `borderRadius.terminal-lg` (8px).
+**Decision**: I will use `rounded-terminal-lg` and create/use a shadow that matches the "terminal green" glow (e.g., `shadow-terminal-green`). If explicit aliases are required, I will add them to `tailwind.config.ts` in Phase 0.
 **Rationale**: Consistency with existing tokens while fulfilling the "terminal aesthetic" requirement.
 
 ### 2. Arabic Font Fallback (EC-001)
