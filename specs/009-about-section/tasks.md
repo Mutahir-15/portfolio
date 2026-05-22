@@ -90,6 +90,7 @@
 - [ ] T022 Update sections barrel export in frontend/components/sections/index.ts
 - [ ] T023 TypeScript verification via `cd frontend && tsc --noEmit`
 - [ ] T024 Visual verification of SC-001 through SC-015
+- [ ] T024a Verify useTypewriter instance isolation (EC-002) via DevTools/Manual Test
 
 ---
 
@@ -299,6 +300,23 @@ const infoItems = [
 ```
 
 ---
+
+### TASK-24a: useTypewriter Isolation (EC-002)
+
+**Test procedure**:
+1. Scroll to mid-page where both HeroSection and AboutSection are partially visible.
+2. Observe independence:
+   - [ ] Both typewriters animate simultaneously.
+   - [ ] Neither pauses when the other is typing.
+   - [ ] Neither resets when the other completes a cycle.
+   - [ ] Switching theme (dark/light) does not reset either typewriter state.
+   - [ ] Both continue after a browser tab switch and return.
+3. DevTools check:
+   - Inspect components in React DevTools.
+   - Expected: each has its OWN useState instances for `displayText`, `phase`, `currentIndex`.
+
+---
+
 
 ## Dependencies & Execution Order
 
