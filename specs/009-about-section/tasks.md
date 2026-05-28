@@ -16,7 +16,7 @@
 
 **Purpose**: Basic barrel update and structure check.
 
-- [ ] T001 Update ui/index.ts barrel export in frontend/components/ui/index.ts
+- [X] T001 Update ui/index.ts barrel export in frontend/components/ui/index.ts
 
 ---
 
@@ -24,12 +24,12 @@
 
 **Purpose**: Implement the reusable `TerminalWindow` atom component.
 
-- [ ] T002 Implement TerminalWindowProps interface in frontend/components/ui/terminal-window.tsx
-- [ ] T003 Implement TerminalWindow title bar in frontend/components/ui/terminal-window.tsx
-- [ ] T004 Implement traffic light dots in frontend/components/ui/terminal-window.tsx
-- [ ] T005 Implement TerminalWindow title text in frontend/components/ui/terminal-window.tsx
-- [ ] T006 Implement TerminalWindow content area in frontend/components/ui/terminal-window.tsx
-- [ ] T007 Implement TerminalWindow entry animation in frontend/components/ui/terminal-window.tsx
+- [X] T002 Implement TerminalWindowProps interface in frontend/components/ui/terminal-window.tsx
+- [X] T003 Implement TerminalWindow title bar in frontend/components/ui/terminal-window.tsx
+- [X] T004 Implement traffic light dots in frontend/components/ui/terminal-window.tsx
+- [X] T005 Implement TerminalWindow title text in frontend/components/ui/terminal-window.tsx
+- [X] T006 Implement TerminalWindow content area in frontend/components/ui/terminal-window.tsx
+- [X] T007 Implement TerminalWindow entry animation in frontend/components/ui/terminal-window.tsx
 
 ---
 
@@ -39,10 +39,10 @@
 
 **Independent Test**: Verify the section renders with the correct code-comment heading and terminal window frame.
 
-- [ ] T008 [US4] Implement AboutSection shell in frontend/components/sections/about-section.tsx
-- [ ] T009 [US4] Implement section heading pattern (FR-004) in frontend/components/sections/about-section.tsx
-- [ ] T010 [US4] Implement two-column grid layout in frontend/components/sections/about-section.tsx
-- [ ] T011 [US4] Implement $ cat mutahir.txt command line in frontend/components/sections/about-section.tsx
+- [X] T008 [US4] Implement AboutSection shell in frontend/components/sections/about-section.tsx
+- [X] T009 [US4] Implement section heading pattern (FR-004) in frontend/components/sections/about-section.tsx
+- [X] T010 [US4] Implement two-column grid layout in frontend/components/sections/about-section.tsx
+- [X] T011 [US4] Implement $ cat mutahir.txt command line in frontend/components/sections/about-section.tsx
 
 ---
 
@@ -52,9 +52,9 @@
 
 **Independent Test**: Verify bio text and location lines are accurate and readable.
 
-- [ ] T012 [US1] Implement bio paragraphs (3 paragraphs) in frontend/components/sections/about-section.tsx
-- [ ] T013 [US1] Implement current focus line in frontend/components/sections/about-section.tsx
-- [ ] T014 [US1] Implement location line in frontend/components/sections/about-section.tsx
+- [X] T012 [US1] Implement bio paragraphs (3 paragraphs) in frontend/components/sections/about-section.tsx
+- [X] T013 [US1] Implement current focus line in frontend/components/sections/about-section.tsx
+- [X] T014 [US1] Implement location line in frontend/components/sections/about-section.tsx
 
 ---
 
@@ -64,8 +64,8 @@
 
 **Independent Test**: Observe the greeting line cycling through English, Arabic, and Urdu strings.
 
-- [ ] T015 [US2] Implement animated greeting with useTypewriter in frontend/components/sections/about-section.tsx
-- [ ] T016 [US2] Implement EC-001 Arabic font-sans wrapper in frontend/components/sections/about-section.tsx
+- [X] T015 [US2] Implement animated greeting with useTypewriter in frontend/components/sections/about-section.tsx
+- [X] T016 [US2] Implement EC-001 Arabic font-sans wrapper in frontend/components/sections/about-section.tsx
 
 ---
 
@@ -75,9 +75,9 @@
 
 **Independent Test**: Verify four info cards render with correct labels and values.
 
-- [ ] T017 [US3] Implement info card component structure in frontend/components/sections/about-section.tsx
-- [ ] T018 [US3] Implement all 4 info cards in frontend/components/sections/about-section.tsx
-- [ ] T019 [P] [US3] Implement stagger animation on info cards in frontend/components/sections/about-section.tsx
+- [X] T017 [US3] Implement info card component structure in frontend/components/sections/about-section.tsx
+- [X] T018 [US3] Implement all 4 info cards in frontend/components/sections/about-section.tsx
+- [X] T019 [P] [US3] Implement stagger animation on info cards in frontend/components/sections/about-section.tsx
 
 ---
 
@@ -85,8 +85,8 @@
 
 **Purpose**: Accessibility, final animations, and verification.
 
-- [ ] T020 Implement scroll animations on all elements in frontend/components/sections/about-section.tsx
-- [ ] T021 Apply all ARIA attributes
+- [X] T020 Implement scroll animations on all elements in frontend/components/sections/about-section.tsx
+- [X] T021 Apply all ARIA attributes
   Files:   frontend/components/ui/terminal-window.tsx
            frontend/components/sections/about-section.tsx
 
@@ -135,10 +135,10 @@
   Done:
     - All 8 criteria explicitly verified
     - No a11y errors in DevTools accessibility panel
-- [ ] T022 Update sections barrel export in frontend/components/sections/index.ts
-- [ ] T023 TypeScript verification via `cd frontend && tsc --noEmit`
-- [ ] T024 Visual verification of SC-001 through SC-015
-- [ ] T024a Verify useTypewriter instance isolation (EC-002) via DevTools/Manual Test
+- [X] T022 Update sections barrel export in frontend/components/sections/index.ts
+- [X] T023 TypeScript verification via `cd frontend && tsc --noEmit`
+- [X] T024 Visual verification of SC-001 through SC-015
+- [X] T024a Verify useTypewriter instance isolation (EC-002) via DevTools/Manual Test
 
 ---
 
