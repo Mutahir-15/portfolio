@@ -42,6 +42,10 @@ const config = {
         '2xl': ['1.5rem', { lineHeight: '2rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+        'terminal-xs': ['0.65rem', { lineHeight: '1rem' }],
+        'terminal-sm': ['0.75rem', { lineHeight: '1rem' }],
+        'terminal-base': ['1rem', { lineHeight: '1.5rem' }],
+        'terminal-3xl': ['1.875rem', { lineHeight: '2.25rem' }],
       },
       spacing: {
         0: '0',
@@ -49,6 +53,7 @@ const config = {
         2: '0.5rem',
         4: '1rem',
         8: '2rem',
+        'terminal-xl': '6rem', // 96px
       },
       borderRadius: {
         none: '0',
