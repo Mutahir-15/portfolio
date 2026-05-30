@@ -1,0 +1,47 @@
+---
+id: 001
+title: Skills Section Specification Creation
+stage: spec
+date: 2026-05-30
+surface: agent
+model: gemini-2.0-flash
+feature: skills-section
+branch: 010-skills-section
+user: user
+command: /sp.specify
+labels: ["specification", "skills-section", "portfolio"]
+links:
+  spec: specs/010-skills-section/spec.md
+  ticket: null
+  adr: null
+  pr: null
+files:
+  - specs/010-skills-section/spec.md
+  - specs/010-skills-section/checklists/requirements.md
+tests:
+---
+
+## Prompt
+
+Project: Mutahir Bin Athar — Personal Portfolio Spec: S-10 / Skills Section Phase: 2 — Static Sections (Spec 3 of 6) Depends on: S-1 complete (skills-section.tsx shell exists) S-2 complete (design tokens available) S-3 complete (theme system active) S-4 complete (fonts loaded) S-5 complete (Navbar, PageWrapper, layout) S-9 complete (section heading pattern defined) Stack: Next.js 15, TypeScript, Tailwind CSS 4, Framer Motion Convention: kebab-case filenames, PascalCase components, camelCase hooks — per Constitution Pillar I --- ## OBJECTIVE Implement the Skills section — a categorized grid of technology badges showing Mutahir's confirmed skill inventory across 4 categories. Each badge has a hover micro-interaction and the section animates in on scroll. This spec also implements the Badge atom component which is reused across Skills, Timeline, and Projects sections in Phase 2 and Phase 3. --- ## CONFIRMED SKILLS INVENTORY This is the authoritative data for this spec. Do not invent or add skills not listed here. Category 1 — Languages (3 skills): TypeScript, Python, JavaScript Category 2 — Frameworks (3 skills): Next.js, FastAPI, Tailwind CSS Category 3 — AI / ML (4 skills): OpenAI Agents SDK, Gemini API, Prompt Engineering, Agentic Workflows Category 4 — Tools (5 skills): Git, GitHub, VS Code, Vercel, SpecKit Plus Total skills: 15 --- ## FILES TO IMPLEMENT frontend/ ├── components/ │ ├── ui/ │ │ └── badge.tsx ← implement fully here │ └── sections/ │ └── skills-section.tsx ← implement fully here --- ## COMPONENT SPEC 1 — Badge File: frontend/components/ui/badge.tsx Type: Client Component ('use client') — hover animation Purpose: Reusable technology badge pill. Renders a skill name with a colored dot indicator and hover glow. Used in Skills, Timeline, and Projects sections. Props interface: interface BadgeProps { label: string variant?: 'green' | 'cyan' | 'muted' // default: 'green' size?: 'sm' | 'md' // default: 'md' className?: string } Visual design: Base styles (all variants): Display: inline-flex items-center gap-2 Font: font-mono Border: border border-terminal (1px from S-2) Radius: rounded-terminal-md (6px from S-2) Cursor: default (not pointer — not clickable) Transition: all 150ms ease Size — md (default): Padding: px-3 py-1.5 Font size: terminal-sm (0.75rem) Size — sm: Padding: px-2 py-1 Font size: terminal-xs (0.65rem) Variant — green (default): Dark idle: bg-dark-surface text-dark-text border-dark-border Dot color: bg-dark-green Dark hover: border-dark-green shadow-terminal-green (from S-2) text-dark-green Light idle: bg-light-surface text-light-text border-light-border Dot color: bg-light-green Light hover: border-light-green shadow-terminal-green text-light-green Variant — cyan: Same pattern as green but uses cyan tokens: Dot: bg-dark-cyan / bg-light-cyan Hover border: border-dark-cyan / border-light-cyan Hover shadow: shadow-terminal-cyan (from S-2) Hover text: text-dark-cyan / text-light-cyan Variant — muted: No dot indicator No hover glow Dark: bg-dark-surface text-dark-muted border-dark-border Light: bg-light-surface text-light-muted border-light-border Hover: slight border lightening only Dot indicator (green + cyan variants only): <span> — w-1.5 h-1.5 rounded-full Color matches variant (dark-green or dark-cyan) aria-hidden="true" Hover animation: Framer Motion whileHover: scale: 1.05 duration: 150ms Only transform and opacity — 60fps compliant Skipped when useReducedMotion() true --- ## COMPONENT SPEC 2 — SkillsSection File: frontend/components/sections/skills-section.tsx Type: Client Component ('use client') — scroll animations Section id: 'skills' (anchor for Navbar [skills] link) --- ## FR-001: Section Layout Section wrapper: id="skills" py-terminal-xl (96px vertical padding from S-2) Wrapped in PageWrapper Section heading — reuse FR-004 pattern from S-9: Line 1: '// section' in font-mono terminal-sm muted Line 2: <h2> 'skills_&_tools' font-mono terminal-3xl font-bold green Line 3: 60px green underline bar mb-12 below the heading before grid --- ## FR-002: Category Layout Four category blocks arranged in a 2x2 grid: Desktop (md+): grid grid-cols-2 gap-8 Mobile: flex flex-col gap-8 Each category block: Dark: bg-dark-surface border border-dark-border Light: bg-light-surface border border-light-border Rounded: rounded-terminal-lg (8px) Padding: p-6 Category header: Flex row: category icon + category name Icon: terminal-style prefix character Languages: [ λ ] (lambda) Frameworks: [ ⬡ ] (hexagon) AI / ML: [ ⚡ ] (lightning) Tools: [ $ ] (dollar — terminal prompt) Icon style: font-mono terminal-sm Color: Dark: text-dark-green Light: text-light-green Name style: font-mono terminal-base font-bold Color: Dark: text-dark-text Light: text-light-text mb-4 below header Badge grid inside each category: Display: flex flex-wrap gap-2 --- ## FR-003: Skill Badges Render each skill as a Badge component. Variant assignment per category: Languages (TypeScript, Python, JavaScript): variant="green" size="md" Frameworks (Next.js, FastAPI, Tailwind CSS): variant="cyan" size="md" AI / ML (OpenAI Agents SDK, Gemini API, Prompt Engineering, Agentic Workflows): variant="green" size="md" Tools (Git, GitHub, VS Code, Vercel, SpecKit Plus): variant="cyan" size="md" Total Badge instances: 15 --- ## FR-004: Skills Data Structure Define skills as a typed constant OUTSIDE the component — never inline in JSX. interface Skill { label: string variant: 'green' | 'cyan' | 'muted' } interface SkillCategory { name: string icon: string skills: Skill[] } const skillCategories: SkillCategory[] = [ { name: 'Languages', icon: 'λ', skills: [ { label: 'TypeScript', variant: 'green' }, { label: 'Python', variant: 'green' }, { label: 'JavaScript', variant: 'green' }, ], }, { name: 'Frameworks', icon: '⬡', skills: [ { label: 'Next.js', variant: 'cyan' }, { label: 'FastAPI', variant: 'cyan' }, { label: 'Tailwind CSS',variant: 'cyan' }, ], }, { name: 'AI / ML', icon: '⚡', skills: [ { label: 'OpenAI Agents SDK', variant: 'green' }, { label: 'Gemini API', variant: 'green' }, { label: 'Prompt Engineering',variant: 'green' }, { label: 'Agentic Workflows', variant: 'green' }, ], }, { name: 'Tools', icon: 'λ → [lang] ⬡ → [fw] ⚡ → [ai] $ → [$] EC-004: skillCategories mutability skillCategories is defined as const — TypeScript enforces immutability at compile time. Use 'as const' assertion for deepest immutability: } as const satisfies SkillCategory[] This provides maximum type narrowing. --- ## SUCCESS CRITERIA SC-001: Section renders with id="skills" anchor SC-002: Section heading: '// section' above 'skills_&_tools' in terminal-3xl green SC-003: Four category blocks in 2x2 grid (desktop) and stacked (mobile) SC-004: All 15 skill badges render with correct variant colors and dot indicators SC-005: Badge hover: scale 1.05 + border glow in correct variant color SC-006: Hover animation skipped on touch devices (prefers-hover: none media query) SC-007: Category icons render correctly (EC-003) SC-008: Scroll animations trigger on viewport entry SC-009: All 4 category blocks stagger correctly (0.15s between each) SC-010: prefers-reduced-motion: all animations disabled, badges still display correctly SC-011: Badge component accepts all 3 variants and both sizes correctly SC-012: skillCategories typed as SkillCategory[] defined outside component SC-013: tsc --noEmit returns EXACTLY 0 TypeScript errors SC-014: No hydration warnings in browser console SC-015: Badge reusable — verify it renders correctly in isolation with each variant --- ## STOP AFTER COMPLETION After printing the S-10 summary block, STOP COMPLETELY. Do NOT generate S-11 automatically. Do NOT run /sp.plan, /sp.specify, or any other command. Await explicit user instruction before any further action.
+
+## Response snapshot
+
+Created feature branch 010-skills-section and initialized specification. Defined user scenarios, functional requirements, and success criteria for the Skills section and Badge component. Validated specification against quality checklist.
+
+## Outcome
+
+- ✅ Impact: Established clear boundaries and requirements for the Skills section implementation.
+- 🧪 Tests: Defined 7 measurable success criteria and independent test scenarios for each user story.
+- 📁 Files: 
+  - specs/010-skills-section/spec.md
+  - specs/010-skills-section/checklists/requirements.md
+- 🔁 Next prompts: /sp.plan
+- 🧠 Reflection: The user provided very detailed requirements, which made the specification process straightforward. Most "informed guesses" were actually just mapping their specific technical requirements to more abstract functional requirements.
+
+## Evaluation notes (flywheel)
+
+- Failure modes observed: Initial branch creation attempt failed due to quote escaping issues in PowerShell. Resolved by using a more concise description for the branch creation script.
+- Graders run and results (PASS/FAIL): PASS
+- Prompt variant (if applicable): null
+- Next experiment (smallest change to try): null
