@@ -172,7 +172,7 @@ Done: `font-sans terminal-sm leading-relaxed`, muted color.
 ### TASK-20: Implement highlights list
 File: `frontend/components/sections/timeline-section.tsx`
 Change: Render achievement bullets.
-Done: '▸ ' prefix, `font-mono terminal-xs`.
+Done: '▸ ' prefix span aria-hidden="true" styled font-mono terminal-xs variant-color, item text font-sans terminal-xs muted-color, gap-1 between items. Rationale: split styling follows Constitution Pillar III (UI chrome vs descriptive content).
 
 ### TASK-21: Implement expand/collapse toggle button
 File: `frontend/components/sections/timeline-section.tsx`
