@@ -1,5 +1,5 @@
 ---
-id: 011
+id: 002
 title: Push S-11 specification to GitHub
 stage: spec
 date: 2026-05-31
@@ -18,7 +18,7 @@ links:
 files:
  - specs/011-timeline-section/spec.md
  - specs/011-timeline-section/checklists/requirements.md
- - history/prompts/timeline-section/010-create-s-11-timeline-section-specification.spec.prompt.md
+ - history/prompts/timeline-section/001-create-s-11-timeline-section-specification.spec.prompt.md
 tests:
  - none
 ---

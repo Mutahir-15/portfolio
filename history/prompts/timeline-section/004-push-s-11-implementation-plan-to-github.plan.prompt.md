@@ -1,5 +1,5 @@
 ---
-id: 013
+id: 004
 title: Push S-11 implementation plan to GitHub
 stage: plan
 date: 2026-05-31
@@ -20,7 +20,7 @@ files:
  - specs/011-timeline-section/research.md
  - specs/011-timeline-section/data-model.md
  - specs/011-timeline-section/quickstart.md
- - history/prompts/timeline-section/012-plan-s-11-timeline-section-implementation.plan.prompt.md
+ - history/prompts/timeline-section/003-plan-s-11-timeline-section-implementation.plan.prompt.md
 tests:
  - none
 ---
