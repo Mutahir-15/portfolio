@@ -194,6 +194,16 @@ File: `frontend/components/sections/timeline-section.tsx`
 Change: Final audit of accessibility props.
 Done: `aria-hidden` on decorative elements (dots, prefixes).
 
+### TASK-24a: Implement and verify keyboard navigation
+File: `frontend/components/sections/timeline-section.tsx`
+Done:
+- Toggle is a <button> element ✓
+- Tab reaches all 4 quarter toggles ✓
+- Enter + Space both toggle expand/collapse ✓
+- Focus stays on button after toggle ✓
+- Focus ring visible in both themes ✓
+- No Escape handler present ✓
+
 ### TASK-25: Update sections barrel export
 File: `frontend/components/sections/index.ts`
 Change: Add `TimelineSection` to barrel.
