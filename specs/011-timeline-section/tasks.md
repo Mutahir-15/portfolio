@@ -32,7 +32,7 @@ graph TD
 
 **Goal**: Render a chronological vertical timeline with 4 nodes alternating on desktop and left-aligned on mobile.
 
-- [ ] T005 [US1] Implement the section wrapper with ID "timeline" and standard padding in `frontend/components/sections/timeline-section.tsx`
+- [ ] T005 [US1] Implement the section wrapper with ID "timeline" and py-terminal-xl padding in `frontend/components/sections/timeline-section.tsx`
 - [ ] T006 [US1] Implement section heading using `@skill/section-heading` pattern with name "journey" in `frontend/components/sections/timeline-section.tsx`
 - [ ] T007 [US1] Implement the relative container and absolute vertical spine in `frontend/components/sections/timeline-section.tsx`
 - [ ] T008 [US1] Map through `timelineData` to render nodes with dots on the spine in `frontend/components/sections/timeline-section.tsx`
@@ -102,7 +102,8 @@ Done: `hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0, transition: {
 ### TASK-6: Implement TimelineSection shell
 File: `frontend/components/sections/timeline-section.tsx`
 Change: Create the 'use client' component with standard wrapper.
-Done: Uses `PageWrapper`, section id="timeline", py-terminal-xl, `overflow-x-hidden` on section.
+Done: 'use client' directive on line 1, id="timeline" on section element, py-terminal-xl (maps to 96px / 6rem from S-2 spacing tokens) vertical padding, PageWrapper wrapping all content, overflow-x-hidden on section element.
+Verify: computed padding-top and padding-bottom = 96px in DevTools.
 
 ### TASK-7: Implement section heading
 File: `frontend/components/sections/timeline-section.tsx`
