@@ -38,7 +38,7 @@ graph TD
 - [ ] T008 [US1] Map through `timelineData` to render nodes with dots on the spine in `frontend/components/sections/timeline-section.tsx`
 - [ ] T009 [US1] Implement alternating layout for nodes (even index left, odd index right) on desktop in `frontend/components/sections/timeline-section.tsx`
 - [ ] T010 [US1] Render static card content (quarter, period, title) for each node in `frontend/components/sections/timeline-section.tsx`
-- [ ] T011 [US1] Implement skills badges for each card using the `Badge` component in `frontend/components/sections/timeline-section.tsx`
+- [ ] T011 [US1] Implement skills badges for each card using the Badge component. Variant mapping (explicit): TimelineEvent.variant 'green' → Badge variant="green", 'cyan' → Badge variant="cyan".
 
 ## Phase 4: [US2] Explore Quarter Details
 
@@ -153,7 +153,19 @@ Done: `<h3>` in `font-mono terminal-lg`, `[completed]` or `[active ▶]` badge.
 ### TASK-16: Implement skills badges in card
 File: `frontend/components/sections/timeline-section.tsx`
 Change: Render tech stack as badges.
-Done: `Badge` component from `@/components/ui`, `event.variant` as variant, `size="sm"`.
+Done: Badge component from @/components/ui, event.variant as variant, size="sm".
+  Explicit prop passing documentation:
+    <Badge
+      key={skill}
+      label={skill}
+      variant={event.variant}  // 'green' | 'cyan' only
+      size="sm"
+    />
+  TypeScript narrows event.variant to 'green' | 'cyan' — satisfies BadgeProps.variant which is 'green' | 'cyan' | 'muted'. No type assertion needed.
+  Variant mapping (explicit):
+    TimelineEvent.variant 'green' → Badge variant="green" (green dot, green hover)
+    TimelineEvent.variant 'cyan' → Badge variant="cyan" (cyan dot, cyan hover)
+  The 'muted' variant is NEVER used in timeline — only 'green' and 'cyan' are valid here.
 
 ### TASK-17: Implement expandedIndex state
 File: `frontend/components/sections/timeline-section.tsx`
