@@ -60,7 +60,7 @@ export default function HeroSection() {
 
   return (
     <section 
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-16 bg-dark-background text-dark-text-primary"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-16 bg-light-background dark:bg-dark-background text-light-text-primary dark:text-dark-text-primary"
       aria-labelledby="hero-heading"
     >
       {/* T014, T015, T017: Matrix Rain Layer */}
@@ -68,7 +68,7 @@ export default function HeroSection() {
 
       {/* T016: Scanline Overlay (Dark Mode only as per spec) */}
       <div 
-        className="absolute inset-0 pointer-events-none z-0 opacity-50 dark:block hidden"
+        className="absolute inset-0 pointer-events-none z-0 dark:opacity-100 opacity-30 dark:block hidden"
         style={{
           background: 'repeating-linear-gradient(transparent 0px, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
           backgroundSize: '100% 2px'
@@ -86,7 +86,7 @@ export default function HeroSection() {
           {/* T009: Terminal Prompt Prefix */}
           <motion.p
             variants={itemVariants}
-            className="font-mono text-dark-primary text-sm md:text-base opacity-80"
+            className="font-mono text-light-primary dark:text-dark-primary text-sm md:text-base opacity-80"
           >
             {'> '}whoami
           </motion.p>
@@ -106,17 +106,17 @@ export default function HeroSection() {
             className="flex flex-col items-center gap-2"
           >
             <div 
-              className="font-mono text-xl md:text-2xl text-dark-secondary h-8 flex items-center"
+              className="font-mono text-xl md:text-2xl text-light-secondary dark:text-dark-secondary h-8 flex items-center"
               aria-live="polite"
               aria-atomic="true"
             >
               <span>{displayText}</span>
               {!isReducedMotion && (
-                <span className="ml-1 w-2 h-6 bg-dark-secondary animate-cursor-blink" aria-hidden="true" />
+                <span className="ml-1 w-2 h-6 bg-light-secondary dark:bg-dark-secondary animate-cursor-blink" aria-hidden="true" />
               )}
             </div>
             
-            <p className="max-w-md text-dark-text-secondary text-base md:text-lg mt-4">
+            <p className="max-w-md text-light-text-secondary dark:text-dark-text-secondary text-base md:text-lg mt-4">
               Building autonomous systems and scalable web applications with architectural precision.
             </p>
 
@@ -126,7 +126,7 @@ export default function HeroSection() {
                 href="#projects"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-dark-primary text-dark-background font-mono font-bold rounded-sm shadow-glow hover:bg-opacity-90 transition-all duration-200"
+                className="px-6 py-3 bg-light-primary dark:bg-dark-primary text-light-background dark:text-dark-background font-mono font-bold rounded-sm dark:shadow-glow hover:bg-opacity-90 transition-all duration-200"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -141,7 +141,7 @@ export default function HeroSection() {
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 border border-dark-primary text-dark-primary font-mono font-bold rounded-sm hover:bg-dark-primary hover:text-dark-background transition-all duration-200"
+                className="px-6 py-3 border border-light-primary dark:border-dark-primary text-light-primary dark:text-dark-primary font-mono font-bold rounded-sm hover:bg-light-primary dark:hover:bg-dark-primary hover:text-light-background dark:hover:text-dark-background transition-all duration-200"
                 aria-label="Download my CV"
               >
                 [ Download_CV ]
@@ -163,7 +163,7 @@ export default function HeroSection() {
             <motion.div
               animate={isReducedMotion ? {} : { y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2 text-dark-text-secondary opacity-60"
+              className="flex flex-col items-center gap-2 text-light-text-secondary dark:text-dark-text-secondary opacity-60"
             >
               <span className="text-xs font-mono uppercase tracking-widest">Scroll</span>
               <svg 

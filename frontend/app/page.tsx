@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeroSection, AboutSection } from '@/components/sections';
+import { HeroSection, AboutSection, SkillsSection, ProjectsSection, ContactSection } from '@/components/sections';
 
 /**
  * Portfolio Home Page
@@ -10,6 +10,9 @@ export default function Home() {
     <div className="flex flex-col w-full">
       <HeroSection />
       <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
       {/* 
         Other sections (Skills, Projects, etc.) will be added 
         here as they are fully implemented in Phase 2.
