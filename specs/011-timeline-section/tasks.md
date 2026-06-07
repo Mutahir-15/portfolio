@@ -192,10 +192,50 @@ File: `frontend/components/sections/timeline-section.tsx`
 Change: Add interactive text trigger.
 Done: `[+ expand]` / `[- collapse]` text, `py-3` minimum touch target, `cursor-pointer`.
 
-### TASK-22: Apply aria-expanded + aria-controls
+### TASK-22: Apply aria-expanded + aria-controls + matching panel id
 File: `frontend/components/sections/timeline-section.tsx`
-Change: Connect button and panel for screen readers.
-Done: `aria-expanded={isExpanded}` on button, `aria-controls` matching panel ID.
+
+Required implementation for each quarter node:
+
+```html
+<!-- Toggle button -->
+<button
+  onClick={() => toggleExpand(index)}
+  aria-expanded={expandedIndex === index}
+  aria-controls={`quarter-${index}-content`}
+  className="..."
+>
+  {expandedIndex === index
+    ? '[- collapse]'
+    : '[+ expand]'}
+</button>
+
+<!-- Controlled panel — id MUST match -->
+<AnimatePresence>
+  {expandedIndex === index && (
+    <motion.div
+      id={`quarter-${index}-content`}
+      role="region"
+      aria-label={`${event.title} details`}
+      ...
+    >
+      {/* description + highlights */}
+    </motion.div>
+  )}
+</AnimatePresence>
+```
+
+Critical requirements:
+1. button aria-controls value EXACTLY matches the panel id value — same template literal `quarter-${index}-content`
+2. Panel has `role="region"` to make it a landmark when expanded
+3. Panel has `aria-label` describing its content
+4. When panel is unmounted (AnimatePresence exit) aria-controls points to a non-existent id — this is acceptable per ARIA spec when the controlled element is conditionally rendered
+
+Verification:
+- Tab to any expand button → press Enter
+- Open browser accessibility tree (DevTools → Accessibility panel)
+- Expected: button shows `aria-expanded: true`, `aria-controls: "quarter-0-content"` (or index)
+- Panel shows `id: "quarter-0-content"`, `role: "region"`
 
 ### TASK-23: Implement scroll animations on nodes
 File: `frontend/components/sections/timeline-section.tsx`
