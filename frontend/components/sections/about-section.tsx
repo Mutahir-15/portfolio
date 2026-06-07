@@ -42,7 +42,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="font-mono text-light-text-secondary dark:text-dark-text-secondary mb-1"
           >
-            // section
+            {"// section"}
           </motion.p>
           <motion.h2
             initial={isReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}

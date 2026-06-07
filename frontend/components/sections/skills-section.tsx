@@ -93,7 +93,7 @@ export default function SkillsSection() {
             className="mb-12"
           >
             <span className="font-mono text-terminal-sm text-light-text-secondary dark:text-dark-text-secondary">
-              // section
+              {"// section"}
             </span>
             <h2 className="font-mono text-terminal-3xl font-bold text-light-primary dark:text-dark-primary mt-1">
               skills_&_tools
