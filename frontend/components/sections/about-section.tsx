@@ -9,7 +9,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 const infoItems = [
   { label: 'Program', value: 'GIAIC', subValue: 'Agentic AI' },
-  { label: 'Quarter', value: '04', subValue: 'In Progress' },
+  { label: 'Quarter', value: '05', subValue: 'In Progress' },
   { label: 'Location', value: 'Karachi', subValue: 'Pakistan' },
   { label: 'Focus', value: 'AIDD', subValue: 'Engineering' },
 ];
@@ -87,7 +87,7 @@ export default function AboutSection() {
                 I am Mutahir Bin Athar, a software engineer passionate about building intelligent, human-centric applications.
               </p>
               <p>
-                Currently enrolled in the Governor Sindh Initiative for Agentic AI (GIAIC), Quarter 4, pushing the boundaries of autonomous agents.
+                Currently enrolled in the Governor Sindh Initiative for Agentic AI (GIAIC), Quarter 5, pushing the boundaries of autonomous agents.
               </p>
               <p>
                 I thrive on Spec-Driven Development (SDD), ensuring every line of code serves a verified architectural purpose.
